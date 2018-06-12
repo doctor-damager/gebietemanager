@@ -21,6 +21,7 @@
   
 }
 
+a { color: inherit; } 
 
 
 .editor-nav .icon  {padding-left: 20px;}
