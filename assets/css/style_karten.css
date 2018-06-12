@@ -1,0 +1,46 @@
+
+
+body {
+    background: rgb(204,204,204); 
+ 
+  }
+  page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 2.5cm;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+  }
+  page[size="A4"] {  
+    width: 210.1mm;
+    height: 297.15mm; 
+  }
+
+
+
+
+  
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  @media print {
+    body, page {
+      margin: 0;
+      box-shadow: 0;
+    }
+  }
+
+  
+  
+  div.background { background: url("./../img/s-13-x-formular.jpg") no-repeat;
+    background-size:  210.1mm auto;
+    width: 210.1mm; 
+  }
+  
+  div.positioniert{
+      margin-left:40px;
+      padding-top:130px;
+      height: 260mm; 
+  }
+

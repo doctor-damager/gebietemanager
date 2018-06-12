@@ -1,0 +1,31 @@
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #343a40;
+}
+
+
+
+.nav-pills .nav-link, .nav-pills .show>.nav-link {
+    color: rgb(0, 0, 0);
+   
+}
+
+
+.editor-nav {
+    
+  
+
+    padding: 15px; 
+
+   
+  
+}
+
+
+
+.editor-nav .icon  {padding-left: 20px;}
+
+.visible-li{
+
+    display:inline !important;
+    }
