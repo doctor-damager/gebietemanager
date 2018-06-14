@@ -8,7 +8,7 @@
   <div class="container editor-nav " >
     <div class="row">
     <div class="col-md-7">
-    <input type="text" id="myInput"  class="form-control float-left" name="myInput" placeholder="Filter..."> </div>
+    <input type="text" id="myFilter"  class="form-control float-left" name="myFilter" placeholder="Filter..."> </div>
     <div class="col-md-5">
    <form name="newPubForm" class=" ml-auto "  method="post" action="/geb/publisher"> 
 
@@ -55,13 +55,15 @@ L&ouml;schen nicht m&ouml;glich aufgrund verkn&uuml;pfter Eintr&auml;ge!
 <?php
 // READ---------------------------------------------------------
 $query = 'SELECT VerkuendigerID, Name FROM Verkuendiger ORDER BY Name';
+
 foreach ($dbh -> query($query) as $row) {
+
    $publisher= $row['Name'];
    $publisherID= $row['VerkuendigerID'];
 
-  echo '<li class="list-group-item  list-group-item-action " style="text-align: left" >
+  echo '<li class="list-group-item  list-group-item-action " style="text-align: left" id="'.$publisherID.'" >
   <span class="float-left">'.$publisher.'</span> <span class="badge badge-light badge-pill float-right">
-  <i class="fas fa-pencil-alt fa-2x" onclick="update(\'publisher?updId='.$publisherID.'&newName=\')" role="button"></i></span> <span class="badge badge-light badge-pill float-right">
+  <i class="fas fa-pencil-alt fa-2x" onclick="update(\'publisher?updId='.$publisherID.'&newName=\',\''.$publisher.'\')" role="button"></i></span> <span class="badge badge-light badge-pill float-right">
   <a href="publisher?deleteID='.$publisherID.'"  role="button" onclick="return checkDelete()">
   <i class="fas fa-trash-alt fa-2x"></i></a></span></li>';
 }
@@ -73,13 +75,10 @@ foreach ($dbh -> query($query) as $row) {
 
 
 
+
 <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myList li").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
+filterme("#myList li");
+activateListItem();
+
+
 </script>
