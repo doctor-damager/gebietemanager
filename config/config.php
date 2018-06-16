@@ -60,12 +60,12 @@ function agoBgColor($datetime){
     $nineMonths = 273.75;
     $elevenMonths= 334.584;
     if($days >= $nineMonths && $days<$elevenMonths)  {
-        return "#ffff009e";
+        return "nine";
 }
 else {
    
     if($days >= $elevenMonths)  {
-        return "#ff8484";}
+        return "eleven";}
         else {
     return ""; 
 }

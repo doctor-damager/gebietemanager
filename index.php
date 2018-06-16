@@ -12,3 +12,6 @@ if (array_key_exists($path, $routes) ) {
 
     
 <?php require_once('./templates/end_tmp.php'); ?>
+<script>$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});</script>

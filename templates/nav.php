@@ -21,8 +21,9 @@
     </ul>
    
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="...">
-      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Suche</button>
+      <input class="form-control mr-sm-2" type="input" style="min-width: 250px;" data-toggle="tooltip"  title="Konsole zum schnellen eingeben von Bearbeitungen. -> Format: Gebietsnummer, Nachname Name,Ausgabe(MMJJ),R&uuml;ckgabe(MMJJ),f(falls danach frei) <- Trennung durch Komma  / Minus falls Datum leer z.B: 320,Pan Peter,0716,-,-" placeholder="z.B: 210,Pan Peter,0716,0917,f">
+      <button class="btn btn-outline-secondary my-2 my-sm-0" >Bearbeitung hinzufügen</button>
     </form>
   </div>
 </nav>
+

@@ -91,3 +91,11 @@ a { color: inherit; }
   .slider.round:before {
     border-radius: 50%;
   }
+
+  .nine > a > .card > .card-footer {
+background-color: #ffff009e;
+  }
+
+  .eleven > a > .card > .card-footer {
+    background-color: #ff8484;
+      }

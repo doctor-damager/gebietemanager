@@ -60,7 +60,7 @@ foreach ($dbh -> query($query) as $row) {
 
    $publisher= $row['Name'];
    $publisherID= $row['VerkuendigerID'];
-
+   if ($publisherID == "1") {continue;}
   echo '<li class="list-group-item  list-group-item-action " style="text-align: left" id="'.$publisherID.'" >
   <span class="float-left">'.$publisher.'</span> <span class="badge badge-light badge-pill float-right">
   <i class="fas fa-pencil-alt fa-2x" onclick="update(\'publisher?updId='.$publisherID.'&newName=\',\''.$publisher.'\')" role="button"></i></span> <span class="badge badge-light badge-pill float-right">

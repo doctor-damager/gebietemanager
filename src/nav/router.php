@@ -12,7 +12,9 @@ $routes = [
   'geb/editor' => 'src/editor/editor.php',
   'geb/editor-pub' => 'src/editor/editor.php',
   'geb/editor-set' => 'src/editor/editor.php',
-  'geb/publisher' => 'src/editor/handle_publisher.php'
+  'geb/publisher' => 'src/editor/handle_publisher.php',
+  'geb/territory' => 'src/editor/handle_territory.php',
+  'geb/return' => 'src/home/home.php',
 ];
 
 

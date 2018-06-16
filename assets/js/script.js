@@ -34,6 +34,55 @@ function filterCards(id) {
     })
 }
 
+
+function yellowOnes(){
+    var list = document.getElementsByClassName('nine');
+    var elements = document.getElementsByClassName("cards");
+    if (document.getElementById('nine-months').checked) 
+    {
+        document.getElementById("eleven-months").checked = false;
+        for (var i = 0; i < elements.length; i++) {         
+          elements[i].classList.add("d-none");          
+        }
+
+        for (var i = 0; i < list.length; i++) {         
+            list[i].classList.remove("d-none");          
+          }
+
+
+    } else {
+        for (var i = 0; i < elements.length; i++) {         
+            elements[i].classList.remove("d-none");          
+          }
+    }
+}
+
+function redOnes(){
+    var list = document.getElementsByClassName('eleven');
+    var elements = document.getElementsByClassName("cards");
+    if (document.getElementById('eleven-months').checked) 
+    {
+        document.getElementById("nine-months").checked = false;
+       
+        for (var i = 0; i < elements.length; i++) {         
+          elements[i].classList.add("d-none");          
+        }
+
+        for (var i = 0; i < list.length; i++) {         
+            list[i].classList.remove("d-none");          
+          }
+
+
+    } else {
+        for (var i = 0; i < elements.length; i++) {         
+            elements[i].classList.remove("d-none");          
+          }
+    }
+}
+
+
+
+
 function nineMoths(id) {
     $("#myFilter").on("keyup", function() {
       var element = document.getElementById(id);
