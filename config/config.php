@@ -14,13 +14,42 @@ function echoActiveClassIfRequestMatches($requestUri)
 }
 
 require_once(dirname(__FILE__).'/../src/nav/router.php'); //starte router
-require_once(dirname(__FILE__).'/../templates/start_tmp.php'); //starte htmlgerüst
+
 require(dirname(__FILE__).'/../vendor/autoload.php'); //composer autoload von fremdpaketen
 
 $user = "root";
 $pass = "bobo";
 
 $dbh = new PDO('mysql:host=localhost;dbname=gebman', $user, $pass);
+
+function getDataAutocomplete($arraytype) {
+   global $user,$pass, $dbh;
+    $stmt = $dbh->prepare("SELECT GebName FROM Gebiet");
+    $stmt->execute();
+    /* Fetch all of the values in form of a numeric array */
+    $ter = $stmt->fetchAll(PDO::FETCH_NUM);
+   
+
+    $stmt = $dbh->prepare("SELECT Name FROM Verkuendiger");
+    $stmt->execute();
+    /* Fetch all of the values in form of a numeric array */
+    $publ = $stmt->fetchAll(PDO::FETCH_NUM);
+    
+$autompleteData = array_merge($ter,$publ);
+$encoded = json_encode($autompleteData, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
+$encodedTer = json_encode($ter, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
+$encodedPub = json_encode($publ, JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
+
+
+$replaceBrackets = array('[[',']','[',']');
+$withoutBrackets = str_replace($replaceBrackets, "", $encoded);
+$terWithoutBrackets = str_replace($replaceBrackets, "", $encodedTer);
+$pubWithoutBrackets = str_replace($replaceBrackets, "", $encodedPub);
+
+if ($arraytype == "combined") {echo $withoutBrackets;}
+if ($arraytype == "ter") {echo $terWithoutBrackets;}
+if ($arraytype == "pub") {echo $pubWithoutBrackets;}
+}
 
 // unbearbeitet seid
 function time_elapsed_string($datetime, $full = false) {
@@ -72,5 +101,7 @@ else {
 }
 }
 
+
+require_once(dirname(__FILE__).'/../templates/start_tmp.php'); //starte htmlgerüst
 
 ?>

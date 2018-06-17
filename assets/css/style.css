@@ -99,3 +99,12 @@ background-color: #ffff009e;
   .eleven > a > .card > .card-footer {
     background-color: #ff8484;
       }
+
+
+
+/* Error Classes for Modal*/
+.error{ background-color: #ff848449!important;}
+.consoleErrorTer:after { content: 'Gebiet nicht vorhanden oder fehlerhaft eingegeben!';}
+.consoleErrorVerk:after { content: 'Verkündiger nicht vorhanden oder fehlerhaft eingegeben!';}
+.consoleErrorRueck:after { content: 'Rückgabedatum fehlerhaft! (Format ist: mm.jj  Z.B.: 10.12 //ergibt Dezember 2012)';}
+.consoleErrorAusg:after { content: 'Ausgabedatum fehlerhaft! (Format ist: mm.jj  Z.B.: 10.12 //ergibt Dezember 2012)';}

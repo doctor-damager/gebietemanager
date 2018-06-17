@@ -83,6 +83,7 @@ function redOnes(){
 
 
 
+
 function nineMoths(id) {
     $("#myFilter").on("keyup", function() {
       var element = document.getElementById(id);
@@ -107,3 +108,13 @@ $('.list-group').on('click', 'li', function() {
     $('.list-group li.active').removeClass('active');
     $(this).addClass('active');
 }); }
+
+function resetErrorMsg() {
+    $("#errorMsg")[0].className="d-none"; 
+    $("#errorMsg1")[0].className="d-none";
+    $("#errorMsg2")[0].className="d-none";
+    $("#errorMsg3")[0].className="d-none";
+    $("#errorMsg4")[0].className="d-none";
+
+}
+

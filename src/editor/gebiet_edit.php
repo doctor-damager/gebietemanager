@@ -1,6 +1,10 @@
 <div class="card-header">
     <b>GEBIET: <?php if (isset($_GET['gebietename'])) { echo $_GET['gebietename'];} else {echo "bitte auswählen";} ?> </b>
-
+  </div>
+  <div class="container-fluid">
+   <div class="row">
+tasdfa
+   </div>
    
   </div>
   <div class="container-fluid">
