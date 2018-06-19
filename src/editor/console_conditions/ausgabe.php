@@ -53,6 +53,16 @@ if ($publLast === "3") {
 $stmt = $dbh->prepare("UPDATE `Bearbeitung` SET  Gebietlink = :gebietlink, Verkuendiger = :verkundiger, ausgabe = :ausgabe, rueckgabe = :rueckgabe WHERE BearbeitungsID = :bearbeitungsid"); 
 $stmt->bindparam(':bearbeitungsid', $BearbIdLast);}
 else{
+    if ( $publLast != $verkId && $rueckgabeLast == "1993-09-30" && $ausgabeLast != NULL  && $ausgabeLast != "1993-09-30" ) {
+        $message = "Das Gebiet ist bereits an einen anderen Verkündiger ausgegeben!";
+       msgDiv(0,$message);
+       exit;
+       }
+       if ( $publLast == $verkId && $rueckgabeLast == "1993-09-30" && $ausgabeLast != NULL  && $ausgabeLast != "1993-09-30" ) {
+        $message = "Das Gebiet ist bereits ausgegeben!";
+       msgDiv(0,$message);
+       exit;
+       }
 
 $stmt = $dbh->prepare("INSERT INTO `Bearbeitung` ( Gebietlink, Verkuendiger, ausgabe, rueckgabe) VALUES (:gebietlink, :verkundiger, :ausgabe, :rueckgabe)");}
 

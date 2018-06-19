@@ -10,7 +10,14 @@ $stmt->bindParam(':name', $name);
 // ausführen
 $name = $_POST['newPublisher'];
 $stmt->execute();
-header("Location: editor-pub?newPub=$name");
+$url = "editor-pub?newPub=$name";
+
+echo '<script type="text/javascript">';
+echo 'window.location.href="'.$url.'";';
+echo '</script>';
+echo '<noscript>';
+echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+echo '</noscript>';
 
 } else  {
 
@@ -31,12 +38,26 @@ if (isset($_GET['deleteID'])) {
     // ausführen
     $vId = $_GET['deleteID'];
     $stmt->execute();
-   header("Location: editor-pub?delPub=$vId");
-  
+  // header("Location: editor-pub?delPub=$vId");
+   $url = "editor-pub?delPub=$vId";
+   echo '<script type="text/javascript">';
+   echo 'window.location.href="'.$url.'";';
+   echo '</script>';
+   echo '<noscript>';
+   echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+   echo '</noscript>';
    
     }
     catch (PDOException $e) { 
-        header("Location: editor-pub?delPubERR=yes");
+       // header("Location: editor-pub?delPubERR=yes");
+        $url = "editor-pub?delPubERR=yes";
+
+echo '<script type="text/javascript">';
+echo 'window.location.href="'.$url.'";';
+echo '</script>';
+echo '<noscript>';
+echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+echo '</noscript>';
     } 
 
  
@@ -63,8 +84,15 @@ if (isset($_GET['deleteID'])) {
     $neuerName = $_GET['newName'];
     $vId = $_GET['updId'];
     $stmt->execute();
-   header("Location: editor-pub?updatedPub=$neuerName");
-  
+  // header("Location: editor-pub?updatedPub=$neuerName");
+   $url = "editor-pub?updatedPub=$neuerName";
+
+   echo '<script type="text/javascript">';
+   echo 'window.location.href="'.$url.'";';
+   echo '</script>';
+   echo '<noscript>';
+   echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+   echo '</noscript>';
    
 
    //error handling
@@ -75,7 +103,15 @@ if (isset($_GET['deleteID'])) {
 //print $stmt->errorCode(); 
     }
     catch (PDOException $e) { 
-        header("Location: editor-pub?updateERR=yes");
+       // header("Location: editor-pub?updateERR=yes");
+        $url = "editor-pub?updateERR=yes";
+
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="'.$url.'";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+        echo '</noscript>';
    } 
 
  

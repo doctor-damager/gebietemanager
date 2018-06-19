@@ -1,0 +1,1 @@
+<?php     echo $bearb_id.$geb_nr.$geb_inhaber.$ausgabe.$rueckgabe.$gebName.htmlspecialchars("$iframe.$anmerkung")."<br>";  ?>

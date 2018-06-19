@@ -1,15 +1,65 @@
+<?php if (isset($_GET['gebietename'])) {$gebieteid = $_GET['gebId'];  
+try{
+$stmt = $dbh->prepare("SELECT * FROM `Gebiet` WHERE GebieteID = $gebieteid");
+$stmt->execute();
+while ($rowTer = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+  $gebName = $rowTer['GebName'];  
+  $iframe = $rowTer['iframe'];  
+  $anmerkung = $rowTer['Anmerkung'];  
+
+} 
+$stmt = $dbh->prepare("SELECT * FROM (SELECT * FROM `Bearbeitung`  
+LEFT JOIN Gebiet ON Bearbeitung.Gebietlink = Gebiet.GebieteID
+LEFT JOIN Verkuendiger ON Bearbeitung.Verkuendiger = Verkuendiger.VerkuendigerID WHERE Bearbeitung.Gebietlink = '$gebieteid'  ORDER BY BearbeitungsID DESC )sub ORDER BY BearbeitungsID ASC");
+$stmt->execute();
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+    $bearb_id = $row['BearbeitungsID'];  
+    $geb_nr = $row['GebName'];
+    $geb_inhaber = $row['Name'];
+    $ausgabe = $row['ausgabe'];
+    $rueckgabe = $row['rueckgabe'];
+                 
+?>
+
+
+
 <div class="card-header">
     <b>GEBIET: <?php if (isset($_GET['gebietename'])) { echo $_GET['gebietename'];} else {echo "bitte auswählen";} ?> </b>
   </div>
   <div class="container-fluid">
    <div class="row">
-tasdfa
+            
    </div>
    
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6"> <iframe src='https://geoportal.bayern.de/bayernatlas/embed.html?lang=de&topic=ba&bgLayer=atkis&catalogNodes=11,122&E=4460736.89&N=5304529.47&zoom=13&layers=KML%7C%7Chttps:%2F%2Fgeoportal.bayern.de%2Fba-backend%2Ffiles%2Ff_d930cc00-71a0-11e8-afa6-2709cd4ac985_ba254ac5-778a-415b-9bc2-c9be3e1f7c5c%7C%7Ctrue' width='100%' height='400px' frameborder='0' style='border:0'></iframe></div>
-        <div class="col-md-6">other stuff</div>
+      <div class="col-md-6"> <?php echo $iframe;       ?> </div>
+        <div class="col-md-6"><?php include('territory_edit_parts/list_processing.php'); ?></div>
     </div>
   </div>
+
+
+
+
+
+
+ <?php 
+ //End while
+}
+             
+
+} catch (PDOException $e){
+   //error handling
+//  echo "\nPDO::errorInfo():\n"; 
+print_r($dbh->errorInfo()); 
+print_r($stmt->errorInfo()); 
+print $dbh->errorCode();
+print $stmt->errorCode(); 
+echo "Error!: " . $e->getMessage() . "<br/>";
+die();             } }?>
+
+<script>$('iframe').width('100%');</script>

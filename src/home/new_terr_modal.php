@@ -29,7 +29,7 @@
         $pubName = $row['Name'];
         $pubNameId = $row['VerkuendigerID'];
 
-        if ($pubNameId == "1") {continue;}
+        if ($pubNameId == "3") {continue;}
        echo' <option id="pub-'.$pubNameId.'" name="pub-'.$pubNameId.'" value='.$pubNameId.'>'.$pubName.'</option>';
       }
     }
