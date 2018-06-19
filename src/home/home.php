@@ -89,8 +89,23 @@ echo '<div class="container-fluid"> <div class="row align-items-center justify-c
         $geb_inhaber = $row2['Name'];
         $ausgabe = $row2['ausgabe'];
         $rueckgabe = $row2['rueckgabe'];
+        if ( $rueckgabe == NULL) {
+            try {
+              $statement3 = $dbh->prepare("SELECT rueckgabe FROM `Bearbeitung` WHERE Gebietlink = '$gebieteid' AND rueckgabe IS NOT NULL  ORDER BY BearbeitungsID DESC LIMIT 1 ");
+              $statement3->execute();
+         
+             while ($row3 = $statement3->fetch(PDO::FETCH_ASSOC)){
+              $rueckgabe = $row3['rueckgabe'];
+            }
+          }
+      
+      
+            catch (PDOException $e) {
+               echo "Error!: " . $e->getMessage() . "<br/>";
+               die();
+            }
+          }
 
-  
         include('card.php');
     }
 

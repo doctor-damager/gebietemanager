@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
     
     <link rel="stylesheet" href="./assets/css/style.css">
-   
+    <link rel="shortcut icon" href="favicon.ico" /> 
+    <link rel="icon" type="image/png" href="favicon.png" />
     
     
 

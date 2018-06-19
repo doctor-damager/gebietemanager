@@ -17,10 +17,8 @@ require_once(dirname(__FILE__).'/../src/nav/router.php'); //starte router
 
 require(dirname(__FILE__).'/../vendor/autoload.php'); //composer autoload von fremdpaketen
 
-$user = "root";
-$pass = "bobo";
 
-$dbh = new PDO('mysql:host=localhost;dbname=gebman', $user, $pass);
+require_once(dirname(__FILE__).'/../config/db.php'); // Definiere Datenbank
 
 function getDataAutocomplete($arraytype) {
    global $user,$pass, $dbh;

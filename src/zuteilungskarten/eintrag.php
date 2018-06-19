@@ -48,8 +48,18 @@ while($row = mysqli_fetch_assoc($res_bearbeitung)){
     $geb_inhaber = $row['Name'];
     $ausgabe = $row['ausgabe'];
     $rueckgabe = $row['rueckgabe'];
-    
-echo "<tr valign='top'height='16px'><td colspan='2'><b>".$geb_inhaber."</b></td></tr><tr valign='top' height='15px'><td> ".date("m.Y", strtotime($ausgabe))."</td><td> ".date("m.Y", strtotime($rueckgabe))."</td></tr>";
+    $rueckgabe2 = date("m.Y", strtotime($rueckgabe));;
+    $ausgabe2 = date("m.Y", strtotime($ausgabe));;
+
+   // if (is_null($rueckgabe2) || empty($rueckgabe2)) { $rueckgabe2="<span style='color:white'>---------</span>";} else { $rueckgabe2 = date("m.Y", strtotime($rueckgabe2));}
+    if ($rueckgabe === "1993-09-30") { $rueckgabe="<span style='color:white'>---------</span>";} else {
+        if ($rueckgabe == NULL) { $rueckgabe="<span style='color:white'>---------</span>";} else {
+        $rueckgabe = $rueckgabe2;} }
+        if ($ausgabe === "1993-09-30") { $ausgabe="<span style='color:white'>---------</span>";} else {
+            if ($ausgabe == NULL) { $ausgabe="<span style='color:white'>---------</span>";} else {
+            $ausgabe = $ausgabe2;} }
+
+echo "<tr valign='top'height='16px'><td colspan='2'><b>".$geb_inhaber."</b></td></tr><tr valign='top' height='15px'><td> ".$ausgabe."</td><td> ".$rueckgabe."</td></tr>";
 
 } 
 echo "</table>";

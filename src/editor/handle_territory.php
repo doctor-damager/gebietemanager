@@ -41,9 +41,9 @@ $verk = $_POST['newTerPubNameId'];
 if ($_POST['newTerAusgabe'] !== "") {
 $ausgabe = $_POST['newTerAusgabe']."-28";} 
 else{
-    $ausgabe = date("Y-m-d"); ;
+    $ausgabe = NULL; ;
 }
-$rueckgabe = date("Y-m-d");
+$rueckgabe = "1993-09.30";
 
 $stmt3->execute(); 
 } catch (PDOException $e) {
@@ -51,7 +51,14 @@ $stmt3->execute();
 }
   
   if( $stmt->errorInfo()[1]  == 1062) {
-    header("Location: return?duplicateError=yes");
+      $url = "return?duplicateError=yes";
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="'.$url.'";';
+    echo '</script>';
+    echo '<noscript>';
+    echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+    echo '</noscript>';
+   // header("Location: return?duplicateError=yes");
   }
  
 if(isset($_POST["btnSubmit"]))
@@ -133,7 +140,15 @@ if(isset($_POST["btnSubmit"]))
     }
 }
 
- // header("Location: return?NewTerCreated=$name"); */
+$url = "return?NewTerCreated=".$name;
+echo '<script type="text/javascript">';
+echo 'window.location.href="'.$url.'";';
+echo '</script>';
+echo '<noscript>';
+echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+echo '</noscript>';
+
+ // header("Location: return?NewTerCreated=$name"); 
 }
 
  else  {
@@ -142,7 +157,7 @@ if(isset($_POST["btnSubmit"]))
 
 } 
 
-
+/*
 
 //DELETE-----------------------------------------------------
 
@@ -218,6 +233,6 @@ if (isset($_GET['deleteID'])) {
 
 
 
-
+*/
 
 ?>

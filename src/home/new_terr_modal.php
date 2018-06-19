@@ -18,7 +18,7 @@
   <div class="form-group">
     <label for="Verkuendiger">Verk&uuml;ndiger</label>
     <select class="form-control" id="newTerPubNameId" name="newTerPubNameId">
-      <option id="frei" name="frei" value="1">Freies Gebiet</option>
+      <option id="frei" name="frei" value="3">Freies Gebiet</option>
       <?php 
     
       try {
@@ -45,7 +45,7 @@
    
     </select>
   </div>
-  <div class="form-group">
+  <div class="form-group" id="ausgabeDiv">
     <label for="Ausgabe">Ausgabe</label>
     <input id="newTerAusgabe" name="newTerAusgabe" id="newTerAusgabe" type="month">
   </div>
@@ -84,3 +84,10 @@
     </div>
   </div>
 </div>
+
+<script> 
+ if($('#newTerPubNameId').val()=="3"){ $('#ausgabeDiv').addClass("d-none");}
+ $('select').on('change', function() {
+  if($('#newTerPubNameId').val()=="3"){ $('#ausgabeDiv').addClass("d-none");} else{
+  $('#ausgabeDiv')[0].className = 'form-group';}
+})</script>

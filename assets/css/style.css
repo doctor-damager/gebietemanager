@@ -100,6 +100,8 @@ background-color: #ffff009e;
     background-color: #ff8484;
       }
 
+      .unbearbeitet > a > .card > .card-footer {background-color: rgba(0, 0, 0, 0.658);}
+
 
 
 /* Error Classes for Modal*/

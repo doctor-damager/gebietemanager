@@ -1,6 +1,3 @@
-
-
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="/geb"><i class="far fa-map"></i> GebieteManager</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,13 +8,13 @@
  $current_file_name4 = basename($_SERVER['REQUEST_URI'], ".php"); ?>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item <?=echoActiveClassIfRequestMatches('geb')?> ">
+      <li class="nav-item <?php echoActiveClassIfRequestMatches('geb');?> ">
         <a class="nav-link" href="/geb">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item  <?=echoActiveClassIfRequestMatches('editor')?>">
+      <li class="nav-item  <?php echoActiveClassIfRequestMatches('editor');?>">
         <a class="nav-link" href="/geb/editor">Editor</a>
       </li>
-      <li class="nav-item  <?=echoActiveClassIfRequestMatches('karten')?>">
+      <li class="nav-item  <?php echoActiveClassIfRequestMatches('karten');?>">
         <a class="nav-link" href="/geb/karten">Zuteilungskarten</a>
       </li>
    
@@ -27,17 +24,18 @@
     <div class="d-block d-sm-none  "> <div class="row">
       <div class="col-4">
        <i class="fas fa-2x fa-info-circle my-2 my-sm-3" style="color:white;margin-right:5px;" data-toggle="tooltip"  data-placement="bottom"  data-html="true"  title="<small><b>Bearbeitung schnell eingeben</b><br/>  Format: Gebietsnummer,Name,Ausgabe(MM.JJ),R&uuml;ckgabe(MM.JJ),frei(falls danach frei) <- Trennung durch Komma  / Minus falls Datum leer</small>"></i>
-      <i class="fas fa-2x fa-question-circle my-2 my-sm-3" style="color:white;margin-right:5px;" data-toggle="tooltip"  data-placement="bottom" data-html="true" title="Beispiele: <br><small>einfach:</small><br><span class='badge badge-pill badge-light'>210,Pan Peter,09.17,08.18</span> <br><small>nur Rückgabe:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,-,09.17</span><br><small>nur Ausgabe:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,09.17,-</span><br><small>nach Rückgabe frei:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,-,07.18,frei</span>"></i></div> <div class="col-8">  <button class="btn btn-outline-secondary my-2 my-sm-3" onclick="bearbeitung()">Bearbeitung hinzufügen</button> </div>  
+      <i class="fas fa-2x fa-question-circle my-2 my-sm-3" style="color:white;margin-right:5px;" data-toggle="tooltip"  data-placement="bottom" data-html="true" title="Beispiele: <br><small>sofortige Ausgabe:</small><br><span class='badge badge-pill badge-light'>210,Pan Peter</span><br><small>einmalige Bearbeitung:</small><br><span class='badge badge-pill badge-light'>210,Pan Peter,09.17,08.18,frei</span> <br><small>nur Bearbeitung:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,-,09.17</span><br><small>nur Ausgabe:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,09.17</span><br><small>nach Bearbeitung frei:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,-,07.18,frei</span><br><small>unbearbeitet zurück:<br></small><span class='badge badge-pill badge-light'>210,frei</span>"></i></div> <div class="col-8">  <button class="btn btn-outline-secondary my-2 my-sm-3" onclick="bearbeitung()">Bearbeitung hinzufügen</button> </div>  
 
     </div></div>
       <input class="form-control mr-sm-2" name="console" id="console" type="input" style="min-width: 270px;"  placeholder="z.B: 210,Pan Peter,0716,0917,frei">
      <div class="	d-none d-sm-block ml-3"> <div class="row">
        <i class="fas fa-2x fa-info-circle " style="color:white;margin-right:5px;" data-toggle="tooltip"  data-placement="bottom"  data-html="true"  title="<small><b>Bearbeitung schnell eingeben</b><br/>  Format: Gebietsnummer,Name,Ausgabe(MM.JJ),R&uuml;ckgabe(MM.JJ),frei(falls danach frei) <- Trennung durch Komma  / Minus falls Datum leer</small>"></i>
-      <i class="fas fa-2x fa-question-circle " style="color:white;margin-right:5px;" data-toggle="tooltip"  data-placement="bottom" data-html="true" title="Beispiele: <br><small>einfach:</small><br><span class='badge badge-pill badge-light'>210,Pan Peter,09.17,08.18</span> <br><small>nur Rückgabe:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,-,09.17</span><br><small>nur Ausgabe:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,09.17,-</span><br><small>nach Rückgabe frei:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,-,07.18,frei</span>"></i> <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="bearbeitung()">Bearbeitung hinzufügen</button> 
+      <i class="fas fa-2x fa-question-circle " style="color:white;margin-right:5px;" data-toggle="tooltip"  data-placement="bottom" data-html="true" title="Beispiele: <br><small>sofortige Ausgabe:</small><br><span class='badge badge-pill badge-light'>210,Pan Peter</span><br><small>einmalige Bearbeitung:</small><br><span class='badge badge-pill badge-light'>210,Pan Peter,09.17,08.18,frei</span> <br><small>nur Bearbeitung:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,-,09.17</span><br><small>nur Ausgabe:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,09.17</span><br><small>nach Bearbeitung frei:<br></small><span class='badge badge-pill badge-light'>210,Pan Peter,-,07.18,frei</span><br><small>unbearbeitet zurück:<br></small><span class='badge badge-pill badge-light'>210,frei</span>"></i> <button class="btn btn-outline-secondary my-2 my-sm-0" onclick="bearbeitung()">Bearbeitung hinzufügen</button> 
 </div></div>
     </div>
   </div>
 </nav>
+<div class="container-fluid" id="errorsucc"></div>
 
 
 <!-- MODAL für Fehlermeldungen-->
@@ -68,6 +66,7 @@
 
 <script>
 function bearbeitung(){
+  $('#errorsucc').html("");
     var getConsole = document.getElementById("console").value;
    
     var consoleArray = getConsole.split(',');
@@ -79,10 +78,12 @@ function bearbeitung(){
 
     var verkArr = [<?php getDataAutocomplete("pub");?>];
     var terArr = [<?php getDataAutocomplete("ter");?>];
+    var rueckgabeForDb ="empty";
+    var ausgabeForDb ="empty";
 
     if (typeof rueckgabe !== "undefined") {
      
-      if (rueckgabe === "-" || rueckgabe ==="" || rueckgabe ==="undefined")  {rueckgabeForDb ="1993-09-30";} else {
+      if (rueckgabe === "-" || rueckgabe ==="" || rueckgabe ==="undefined")  {rueckgabeForDb ="false";} else {
     var rueckgabeSplited = rueckgabe.split(".");
     var rueckgabeToDate = new Date("20"+rueckgabeSplited[1]+"-"+rueckgabeSplited[0]+"-28");
     var d = new Date();
@@ -104,10 +105,14 @@ function bearbeitung(){
 
   }
   } 
+  else {
+      rueckgabeForDb = "false";
+    }
 
-    if (typeof ausgabe !== "undefined") {
+ if (typeof ausgabe !== "undefined") {
+  
      
-     if (ausgabe === "-" || ausgabe ==="" || ausgabe ==="undefined")  {ausgabeForDb ="1993-09-30";} else {
+     if (ausgabe === "-" || ausgabe === "" || ausgabe === "undefined" || ausgabe === "," || ausgabe === " ")  {ausgabeForDb = "false";} else {
    var ausgabeSplited = ausgabe.split(".");
    var ausgabeToDate = new Date("20"+ausgabeSplited[1]+"-"+ausgabeSplited[0]+"-28");
    var d = new Date();
@@ -128,12 +133,12 @@ function bearbeitung(){
            }
 
  }
- } 
-
-
-    else {
-      ausgabeForDb ="1993-09-30";
+} 
+  else {
+    ausgabeForDb = "false";
     }
+ 
+
 
    
     if (gebiet == "undefined" || terArr.includes(gebiet) == false ) {
@@ -147,8 +152,27 @@ function bearbeitung(){
       return;
     }
    // console.log(gebiet,verk,ausgabeForDb,rueckgabeForDb,frei);
+
+
+   //insert into database with ajax and php
+
+     $.ajax({
+                    url:'./src/editor/handle_processing.php',
+                    method:'POST',
+                    datType:'html',
+                    data:{
+                      gebiet:gebiet,
+                      verk:verk,
+                      ausgabeForDb:ausgabeForDb,
+                      rueckgabeForDb:rueckgabeForDb,
+                      frei:frei
+                    },
+                   success:function(data){
+                       $('#errorsucc').html(data);
+                   }
+                });
     
-    window.location.replace("processing?gebiet="+gebiet+"&publ="+verk+"&ausgabe="+ausgabeForDb+"&rueckgabe="+rueckgabeForDb+"&frei="+frei);
+    //window.location.replace("processing?gebiet="+gebiet+"&publ="+verk+"&ausgabe="+ausgabeForDb+"&rueckgabe="+rueckgabeForDb+"&frei="+frei);
 }
 
 
