@@ -45,7 +45,7 @@ function msgDiv($class,$msg){
 
 //  EINTRÄGE 
 //sofortige Ausgabe
-echo $condition;
+//echo $condition;
 if ($condition == "sofort") { include("./console_conditions/sofort.php"); }
 
 

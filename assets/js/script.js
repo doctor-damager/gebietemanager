@@ -34,6 +34,31 @@ function filterCards(id) {
     })
 }
 
+function editTD($bearbId) {alert($bearbId);}
+
+function deleteP(bearbId) {
+    if( confirm('Bist du dir sicher?')) { 
+     var deleteMe = true;
+
+        $.ajax({ 
+            url:'./src/editor/territory_edit_parts/edit_processing.php',
+            method:'POST',
+            datType:'html',
+            data:{
+                bearbId:bearbId,
+                deleteMe:deleteMe
+            },
+           success:function(data){
+            $('#infoModal').modal('show')
+               $('#theInfo').html(data);
+           }
+        });
+
+    
+    
+    
+    };
+}
 
 function yellowOnes(){
     var list = document.getElementsByClassName('nine');

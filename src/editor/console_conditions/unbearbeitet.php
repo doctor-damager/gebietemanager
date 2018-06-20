@@ -14,7 +14,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     $publLast = $row['Verkuendiger'];
     $BearbIdLast = $row['BearbeitungsID'];
     
-    if ( $rueckgabeLast == NULL || $publLast === "3") {
+    if ( $rueckgabeLast == NULL && $publLast === "3") {
        $message = "Das Gebiet ist bereits frei, Eintrag nicht möglich!";
        msgDiv(0,$message);
        exit;
