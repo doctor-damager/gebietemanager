@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 21. Apr 2018 um 21:47
--- Server-Version: 5.7.20-0ubuntu0.16.04.1
--- PHP-Version: 7.0.24-1+ubuntu16.04.1+deb.sury.org+1
+-- Erstellungszeit: 21. Jun 2018 um 23:37
+-- Server-Version: 5.7.22-0ubuntu0.16.04.1
+-- PHP-Version: 7.0.30-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,8 +30,8 @@ CREATE TABLE `Bearbeitung` (
   `BearbeitungsID` int(11) NOT NULL,
   `Gebietlink` int(11) NOT NULL,
   `Verkuendiger` int(11) NOT NULL,
-  `ausgabe` date NOT NULL,
-  `rueckgabe` date NOT NULL
+  `ausgabe` date DEFAULT NULL,
+  `rueckgabe` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -39,50 +39,10 @@ CREATE TABLE `Bearbeitung` (
 --
 
 INSERT INTO `Bearbeitung` (`BearbeitungsID`, `Gebietlink`, `Verkuendiger`, `ausgabe`, `rueckgabe`) VALUES
-(2, 2, 3, '2018-04-01', '2018-04-10'),
-(3, 1, 1, '2018-04-03', '2018-04-10'),
-(4, 1, 3, '2018-04-01', '2018-04-10'),
-(5, 4, 3, '2018-02-13', '2018-04-11'),
-(6, 5, 1, '2018-01-08', '2018-03-15'),
-(7, 3, 3, '2018-02-13', '2018-04-11'),
-(8, 334, 1, '2018-01-08', '2018-03-15'),
-(9, 335, 3, '2018-02-13', '2018-04-11'),
-(10, 336, 1, '2018-01-08', '2018-03-15'),
-(11, 337, 3, '2018-02-13', '2018-04-11'),
-(12, 338, 1, '2018-01-08', '2018-03-15'),
-(13, 339, 3, '2018-02-13', '2018-04-11'),
-(14, 340, 1, '2018-01-08', '2018-03-15'),
-(15, 341, 3, '2018-02-13', '2018-04-11'),
-(16, 341, 1, '2018-01-08', '2018-03-15'),
-(17, 1, 1, '2017-12-18', '2018-02-13'),
-(18, 1, 3, '2017-08-16', '2018-03-15'),
-(19, 1, 1, '2017-12-18', '2018-02-13'),
-(20, 1, 3, '2017-08-16', '2018-03-15'),
-(21, 1, 1, '2017-12-18', '2018-02-13'),
-(22, 1, 3, '2017-08-16', '2018-03-15'),
-(23, 1, 1, '2017-12-18', '2018-02-13'),
-(24, 1, 3, '2017-08-16', '2018-03-15'),
-(25, 1, 1, '2017-12-18', '2018-02-13'),
-(26, 1, 3, '2017-08-16', '2018-03-15'),
-(27, 1, 1, '2017-12-18', '2018-02-13'),
-(28, 1, 3, '2017-08-16', '2018-03-15'),
-(29, 1, 1, '2017-12-18', '2018-02-13'),
-(30, 1, 3, '2017-08-16', '2018-03-15'),
-(31, 1, 1, '2017-12-18', '2018-02-13'),
-(32, 1, 3, '2017-08-16', '2018-03-15'),
-(33, 1, 1, '2017-12-18', '2018-02-13'),
-(34, 1, 3, '2017-08-16', '2018-03-15'),
-(35, 1, 1, '2017-12-18', '2018-02-13'),
-(36, 1, 3, '2017-08-16', '2018-03-15'),
-(37, 1, 1, '2017-12-18', '2018-02-13'),
-(38, 1, 3, '2017-08-16', '2018-03-15'),
-(39, 1, 1, '2017-12-18', '2018-02-13'),
-(40, 1, 3, '2017-08-16', '2018-03-15'),
-(41, 1, 1, '2017-12-18', '2018-02-13'),
-(42, 1, 3, '2017-08-16', '2018-03-15'),
-(43, 1, 1, '2017-12-18', '2018-02-13'),
-(44, 1, 3, '2017-08-16', '2018-03-15'),
-(45, 1, 4, '2018-04-01', '2018-04-16');
+(174, 439, 35, '2010-10-28', '2011-10-28'),
+(247, 439, 35, '2011-10-28', '2012-10-28'),
+(249, 439, 9, '2013-10-28', '2014-09-28'),
+(250, 439, 3, NULL, '1993-09-30');
 
 -- --------------------------------------------------------
 
@@ -92,27 +52,40 @@ INSERT INTO `Bearbeitung` (`BearbeitungsID`, `Gebietlink`, `Verkuendiger`, `ausg
 
 CREATE TABLE `Gebiet` (
   `GebieteID` int(11) NOT NULL,
-  `GebName` varchar(4) NOT NULL
+  `GebName` varchar(6) NOT NULL,
+  `iframe` varchar(800) NOT NULL,
+  `Anmerkung` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `Gebiet`
 --
 
-INSERT INTO `Gebiet` (`GebieteID`, `GebName`) VALUES
-(1, '10'),
-(2, '20'),
-(4, '232'),
-(3, '233'),
-(334, '236'),
-(5, '237'),
-(336, '238'),
-(335, '333'),
-(337, '338'),
-(338, '348'),
-(339, '358'),
-(340, '368'),
-(341, '378');
+INSERT INTO `Gebiet` (`GebieteID`, `GebName`, `iframe`, `Anmerkung`) VALUES
+(439, '10', '<iframe src=\'https://geoportal.bayern.de/bayernatlas/embed.html?lang=de&topic=ba&bgLayer=atkis&catalogNodes=11,122&E=4460726.04&N=5304531.82&zoom=13&layers=KML%7C%7Chttps:%2F%2Fgeoportal.bayern.de%2Fba-backend%2Ffiles%2Ff_d930cc00-71a0-11e8-afa6-2709cd4ac985_ba254ac5-778a-415b-9bc2-c9be3e1f7c5c%7C%7Ctrue\' width=\'600\' height=\'450\' frameborder=\'0\' style=\'border:0\'></iframe>', 'test');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `passwort` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `vorname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `nachname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Daten für Tabelle `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `passwort`, `vorname`, `nachname`, `created_at`, `updated_at`) VALUES
+(1, 'test@test.de', '$2y$10$qCgb4MKzbMKAqUU2LOFBQ.wGoAD6yBElFA7V7EPwK.QGCViJjx4mu', '', '', '2018-06-20 12:11:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -130,8 +103,16 @@ CREATE TABLE `Verkuendiger` (
 --
 
 INSERT INTO `Verkuendiger` (`VerkuendigerID`, `Name`) VALUES
-(1, 'Bogdan Dilaj'),
-(3, 'Eugen Barth'),
+(35, 'Bogdan Dilaj'),
+(9, 'Dilay Viki'),
+(332, 'Eugen Barth'),
+(3, 'frei'),
+(28, 'Hans im GlÃ¼ck'),
+(27, 'Herald Peter'),
+(33, 'jÃ¼nglin'),
+(88, 'JÃ¼rgen'),
+(26, 'JÃ¼rgen Urban'),
+(36, 'Karaisalidis Michael'),
 (4, 'Peter Pan');
 
 --
@@ -151,13 +132,22 @@ ALTER TABLE `Bearbeitung`
 --
 ALTER TABLE `Gebiet`
   ADD PRIMARY KEY (`GebieteID`),
+  ADD UNIQUE KEY `GebName` (`GebName`),
   ADD KEY `idx_Gebiet_Name` (`GebName`);
+
+--
+-- Indizes für die Tabelle `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indizes für die Tabelle `Verkuendiger`
 --
 ALTER TABLE `Verkuendiger`
-  ADD PRIMARY KEY (`VerkuendigerID`);
+  ADD PRIMARY KEY (`VerkuendigerID`),
+  ADD UNIQUE KEY `Name` (`Name`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -167,17 +157,22 @@ ALTER TABLE `Verkuendiger`
 -- AUTO_INCREMENT für Tabelle `Bearbeitung`
 --
 ALTER TABLE `Bearbeitung`
-  MODIFY `BearbeitungsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `BearbeitungsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
 --
 -- AUTO_INCREMENT für Tabelle `Gebiet`
 --
 ALTER TABLE `Gebiet`
-  MODIFY `GebieteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=342;
+  MODIFY `GebieteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=475;
+--
+-- AUTO_INCREMENT für Tabelle `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `Verkuendiger`
 --
 ALTER TABLE `Verkuendiger`
-  MODIFY `VerkuendigerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `VerkuendigerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=333;
 --
 -- Constraints der exportierten Tabellen
 --
