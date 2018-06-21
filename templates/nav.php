@@ -17,6 +17,9 @@
       <li class="nav-item  <?php echoActiveClassIfRequestMatches('karten');?>">
         <a class="nav-link" href="/geb/karten">Zuteilungskarten</a>
       </li>
+      <li class="nav-item  <?php echoActiveClassIfRequestMatches('logout');?>">
+        <a class="nav-link" href="/geb/logout"><i class="fas fa-sign-out-alt"></i>ausloggen</a>
+      </li>
    
     </ul>
  

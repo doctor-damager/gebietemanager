@@ -39,6 +39,20 @@ while ($rowTer = $stmt->fetch(PDO::FETCH_ASSOC)){
   </thead>
   <tbody>
   <?php
+
+
+$stmt = $dbh->prepare("SELECT * FROM (SELECT * FROM `Bearbeitung`  
+LEFT JOIN Gebiet ON Bearbeitung.Gebietlink = Gebiet.GebieteID
+LEFT JOIN Verkuendiger ON Bearbeitung.Verkuendiger = Verkuendiger.VerkuendigerID WHERE Bearbeitung.Gebietlink = '$gebieteid'  ORDER BY BearbeitungsID DESC LIMIT 1)sub ORDER BY BearbeitungsID ASC");
+$stmt->execute();
+
+while ($row_last = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+    $rueckgabeLast = $row_last['rueckgabe'];
+    $ausgabeLast = $row_last['ausgabe'];
+    $publLast = $row_last['Verkuendiger'];
+    $BearbIdLast = $row_last['BearbeitungsID'];}
+
   $stmt = $dbh->prepare("SELECT * FROM `Bearbeitung`  
   LEFT JOIN Gebiet ON Bearbeitung.Gebietlink = Gebiet.GebieteID
   LEFT JOIN Verkuendiger ON Bearbeitung.Verkuendiger = Verkuendiger.VerkuendigerID WHERE Bearbeitung.Gebietlink = '$gebieteid'  ORDER BY BearbeitungsID DESC LIMIT 25");

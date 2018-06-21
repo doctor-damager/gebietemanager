@@ -38,7 +38,7 @@ else{
 
 function msgDiv($class,$msg){
     if ($class == 1){
-    echo "<div class='row alert-success justify-content-center'>".$msg." <a href='/geb'><i class='fas fa-sync ml-2'></i></a></div> <script>$('input[name=console').val('');</script>";}
+    echo "<div class='row alert-success justify-content-center'>".$msg." <i class='fas fa-sync ml-2' onclick='location.reload();'></i></div> <script>$('input[name=console').val('');</script>";}
     if ($class == 0){
         echo "<div class='row alert-danger justify-content-center'>".$msg."</div>";}
 }
@@ -67,7 +67,7 @@ if ($condition == "rueckgabe") { include("./console_conditions/rueckgabe.php"); 
 // unbearbitet zurück
 
 if ($condition == "unbearbeitet") { include("./console_conditions/unbearbeitet.php"); }
-if ($condition == "bereits_ausgegeben") { msgDiv(0,"Fehlende oder überflüssige Eingaben! Bitte Format beachten!"); }
+if ($condition == "bereits_ausgegeben") { msgDiv(0,"Fehlende oder überflüssige Eingaben! Bitte Format beachten! Ist das Gebiet ausgegeben?"); }
 if ($condition == "false") { msgDiv(0,"Fehlerhafte Eingabe"); }
 
 

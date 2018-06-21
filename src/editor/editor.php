@@ -11,7 +11,7 @@
         <p>Modal body text goes here.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.reload();">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.reload();">Schließen</button>
       </div>
     </div>
   </div>

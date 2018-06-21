@@ -36,8 +36,12 @@ function filterCards(id) {
 
 function editTD($bearbId) {alert($bearbId);}
 
-function deleteP(bearbId) {
+function deleteP(bearbId,freeCheck,gebieteId,lastPub) {
+    if (freeCheck == "3"){alert("Frei kann nicht gelöscht werden ! Neu ausgeben!"); return;}
     if( confirm('Bist du dir sicher?')) { 
+        
+      
+
      var deleteMe = true;
 
         $.ajax({ 
@@ -46,7 +50,10 @@ function deleteP(bearbId) {
             datType:'html',
             data:{
                 bearbId:bearbId,
-                deleteMe:deleteMe
+                deleteMe:deleteMe,
+                freeCheck:freeCheck,
+                gebieteId:gebieteId,
+                lastPub:lastPub
             },
            success:function(data){
             $('#infoModal').modal('show')

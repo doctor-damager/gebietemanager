@@ -16,22 +16,22 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     
 
     if ( $publLast == "3" ) {
-        $message = "Gebiet ist noch nicht Ausgegeben!";
+        $message = "Gebiet ist noch nicht ausgegeben! Error 1";
         msgDiv(0,$message);
         exit;
        }
 
-       if ( $publLast != $verk ) {
-        $message = "Gebiet ist bereits ausgegeben!";
+       if ( $publLast != $verkId ) {
+        $message = "Gebiet ist bereits ausgegeben! Error 2";
         msgDiv(0,$message);
         exit;
        }
 
-    if ( $rueckgabeLast == NULL ) {
-        $message = "Das Gebiet ist bereits ausgegeben!";
+/*  überflüssig?  if ( $rueckgabeLast == NULL ) {
+        $message = "Das Gebiet ist bereits ausgegeben! Error 3";
        msgDiv(0,$message);
        exit;
-      }
+      } */
 
 
       if (strtotime($rueckgabeLast) > strtotime($ausgabe) ) {
@@ -60,23 +60,24 @@ catch (PDOException $e) {
  }
 
 
-
+/////fehler ....insert muss update sein
 
 
 try {
 if ($publLast === "3") {
 
 $stmt = $dbh->prepare("UPDATE `Bearbeitung` SET  Gebietlink = :gebietlink, Verkuendiger = :verkundiger, ausgabe = :ausgabe, rueckgabe = :rueckgabe WHERE BearbeitungsID = :bearbeitungsid"); 
-$stmt->bindparam(':bearbeitungsid', $BearbIdLast);}
+$stmt->bindparam(':gebietlink', $gebietId);
+$stmt->bindparam(':ausgabe', $ausgabe);
+}
+
 else{
 
 if($rueckgabeLast == "1993-09-30" && $publLast != $verk) {msgDiv(0,"Das Gebiet ist Bereits ausgegeben! Name überprüfen! Ausgabe muss '-' sein!"); exit;}
 
-$stmt = $dbh->prepare("INSERT INTO `Bearbeitung` ( Gebietlink, Verkuendiger, ausgabe, rueckgabe) VALUES (:gebietlink, :verkundiger, :ausgabe, :rueckgabe)");}
-
-$stmt->bindparam(':gebietlink', $gebietId);
+$stmt = $dbh->prepare("UPDATE `Bearbeitung` SET Verkuendiger = :verkundiger, rueckgabe = :rueckgabe WHERE BearbeitungsID = :bearbeitungsid");}
+$stmt->bindparam(':bearbeitungsid', $BearbIdLast);
 $stmt->bindparam(':verkundiger', $verkId);
-$stmt->bindparam(':ausgabe', $ausgabe);
 $stmt->bindparam(':rueckgabe', $rueckgabe);
 $stmt->execute();
 

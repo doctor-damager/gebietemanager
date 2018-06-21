@@ -15,7 +15,10 @@ $routes = [
   'geb/publisher' => 'src/editor/handle_publisher.php',
   'geb/territory' => 'src/editor/handle_territory.php',
   'geb/return' => 'src/home/home.php',
-  'geb/processing' => 'src/editor/handle_processing.php'
+  'geb/home' => 'src/home/home.php',
+  'geb/processing' => 'src/editor/handle_processing.php',
+  'geb/logout' => 'src/logout.php'
+  
 ];
 
 
