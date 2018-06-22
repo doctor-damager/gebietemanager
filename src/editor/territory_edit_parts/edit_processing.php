@@ -26,5 +26,49 @@ $stmt->execute();
 }
 }
 
+if (isset($_POST["the_selected"])) {
+
+    $theId = $_POST["bearbId"];
+    $theValue = $_POST["the_selected"];
+    $theType = $_POST["type"];
+    $message = "Es ist ein Fehler unterlaufen!";
+
+if($theValue == "" || $theValue == null){
+    echo "Feher! keine Eingabe";
+    exit;
+} 
+
+if($theType == "i"){
+    $stmt = $dbh->prepare("UPDATE `Bearbeitung` SET Verkuendiger = :myValue WHERE Bearbeitungsid = :id");
+    $stmt->bindparam(":id", $theId);
+    $stmt->bindparam(":myValue", $theValue);
+    $stmt->execute();
+    $message = "Name wurde geändert!";
+}
+if($theType == "a"){
+    $stmt = $dbh->prepare("UPDATE `Bearbeitung` SET ausgabe = :myValue WHERE Bearbeitungsid = :id");
+    $stmt->bindparam(":id", $theId);
+    $stmt->bindparam(":myValue", $theValue);
+    $stmt->execute();
+    $message = "Ausgabe wurde geändert!";
+}
+if($theType == "r"){
+    $stmt = $dbh->prepare("UPDATE `Bearbeitung` SET rueckgabe = :myValue WHERE Bearbeitungsid = :id");
+    $stmt->bindparam(":id", $theId);
+    $stmt->bindparam(":myValue", $theValue);
+    $stmt->execute();
+    $message = "Rueckgabe wurde geändert!";
+}
+
+echo $message;
+
+
+
+
+
+
+    
+}
+
 
 ?>

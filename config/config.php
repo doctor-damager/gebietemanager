@@ -100,48 +100,6 @@ else {
 }
 }
 
-if(isset($_POST['email'])) {
-    $email = $_POST['email'];
-    $passwort = $_POST['passwort'];
-    
-    $statement = $dbh->prepare("SELECT * FROM users WHERE email = :email");
-    $result = $statement->execute(array('email' => $email));
-    $user = $statement->fetch();
-        
-    //Überprüfung des Passworts
-    if ($user !== false && password_verify($passwort, $user['passwort'])) {
-        $_SESSION['userid'] = $user['id'];
-
-    } else {
-        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
-    }
-    
-}
-
-
-if(!isset($_SESSION['userid'])) {
-if(isset($errorMessage)) {
-    echo $errorMessage;
-}
-
-echo '<form action="/geb/home" method="post">
-E-Mail:<br>
-<input type="email" size="40" maxlength="250" name="email"><br><br>
- 
-Dein Passwort:<br>
-<input type="password" size="40"  maxlength="250" name="passwort"><br>
- 
-<input type="submit" value="Abschicken">
-</form> 
-</body>
-</html>';
-
-    die('Bitte zuerst <a href="login.php">einloggen</a>');
-}
-if(!isset($_SESSION['userid'])) {
-    die('Bitte zuerst <a href="login.php">einloggen</a>');
-}
-$userid = $_SESSION['userid'];
 
 require_once(dirname(__FILE__).'/../templates/start_tmp.php'); //starte htmlgerüst
 

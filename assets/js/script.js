@@ -33,8 +33,109 @@ function filterCards(id) {
   
     })
 }
+function showInfo(inside){
 
-function editTD($bearbId) {alert($bearbId);}
+    
+    $('#infoModal').modal('show')
+    $('#theInfo').html(inside);
+    
+    
+    }
+
+
+function editTD(bearbId,type) {
+  
+      if (type == "i") {
+        $('#changePubModal').modal('show');
+
+        $('#selN').change(function(){
+        var the_selected = $( '#selN' ).val();
+        var the_selectedName = $( '#'+the_selected ).text();
+      confirm("Auf "+the_selectedName+" ändern?") 
+      
+      $.ajax({ 
+        url:'./src/editor/territory_edit_parts/edit_processing.php',
+        method:'POST',
+        datType:'html',
+        data:{
+            bearbId:bearbId,
+            the_selected:the_selected,
+            type:type
+         
+        },
+       success:function(data){
+        $('#cn').html(data);
+       }
+    });
+    
+    
+    });
+
+      }
+       
+  
+      if (type == "a") {
+        $('#changeAusModal').modal('show');
+
+        $('#newAus').change(function(){
+        var the_date = $( '#newAus' ).val();
+     
+      confirm("Ausgabe auf "+the_date+" ändern?") 
+       var the_selected = the_date+"-28";
+      $.ajax({ 
+        url:'./src/editor/territory_edit_parts/edit_processing.php',
+        method:'POST',
+        datType:'html',
+        data:{
+            bearbId:bearbId,
+            the_selected:the_selected,
+            type:type
+         
+        },
+       success:function(data){
+        $('#cn1').html(data);
+       }
+    });
+    
+    
+    });
+
+      }
+      if (type == "r") {
+        $('#changeRueckModal').modal('show');
+
+        $('#newRueck').change(function(){
+        var the_date = $( '#newRueck' ).val();
+     
+      confirm("Rueckgabe auf "+the_date+" ändern?") 
+       var the_selected = the_date+"-28";
+      $.ajax({ 
+        url:'./src/editor/territory_edit_parts/edit_processing.php',
+        method:'POST',
+        datType:'html',
+        data:{
+            bearbId:bearbId,
+            the_selected:the_selected,
+            type:type
+         
+        },
+       success:function(data){
+        $('#cn2').html(data);
+       }
+    });
+    
+    
+    });
+
+      }
+    
+ 
+
+}
+
+
+
+
 
 function deleteP(bearbId,freeCheck,gebieteId,lastPub) {
     if (freeCheck == "3"){alert("Frei kann nicht gelöscht werden ! Neu ausgeben!"); return;}
