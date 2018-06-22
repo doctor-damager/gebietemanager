@@ -1,4 +1,31 @@
-<?php if (isset($_GET['gebietename'])) {$gebieteid = $_GET['gebId'];   $nameOfTer = $_GET['gebietename'];
+<div class="card-header">
+    <b>GEBIET: <?php if (isset($_GET['gebietename'])) { $nameOfTer = $_GET['gebietename']; echo $nameOfTer;} else {} ?> </b>
+ 
+
+<select name="selT" style="max-width:20%;" id="selT"  class="custom-select">
+      <option selected>Bitte wählen!</option>
+<?php 
+$stmt = $dbh->prepare("SELECT * FROM Gebiet");
+
+$stmt->execute();
+while ($rowp = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+    $id_P = $rowp['GebieteID'];
+    $name_P = $rowp['GebName'];
+
+    if ($id_P == "3") {continue;}
+    
+    echo '<option value="'.$id_P.'" id="'.$id_P.'">'.$name_P.'</option>';
+
+}
+
+    
+    ?>
+    </select>
+    </div>
+
+
+<?php if (isset($_GET['gebietename'])) {$gebieteid = $_GET['gebId'];
 try{
 $stmt = $dbh->prepare("SELECT * FROM `Gebiet` WHERE GebieteID = $gebieteid");
 $stmt->execute();
@@ -13,9 +40,7 @@ while ($rowTer = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 
 
-<div class="card-header">
-    <b>GEBIET: <?php if (isset($_GET['gebietename'])) { echo $nameOfTer;} else {echo "bitte auswählen";} ?> </b>
-  </div>
+
   <div class="container-fluid">
    <div class="row">
             
@@ -94,6 +119,23 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 
 
+
+
+<script>
+ $('#selT').change(function(){
+        var the_selected = $( '#selT' ).val();
+        var theName = $( '#selT' ).text();
+        window.location.replace("editor?gebietename="+theName+"&gebId="+the_selected);
+      
+ });
+
+$('iframe').width('100%');
+$('#<?php echo $i-1;?>').html(" ");
+$('#<?php echo $i-1;?>').prop('onclick',null).off('click');
+
+
+</script>
+
  <?php 
 
              
@@ -109,10 +151,10 @@ echo "Error!: " . $e->getMessage() . "<br/>";
 die();             } }?>
 
 <script>
-
-$('iframe').width('100%');
-$('#<?php echo $i-1;?>').html(" ");
-$('#<?php echo $i-1;?>').prop('onclick',null).off('click');
-
-
-</script>
+ $('#selT').change(function(){
+        var the_selected = $( '#selT' ).val();
+        var theName = $( '#'+the_selected ).text();
+        window.location.replace("editor?gebietename="+theName+"&gebId="+the_selected);
+      
+ });
+ </script>
