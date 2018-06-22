@@ -148,91 +148,97 @@ echo '<noscript>';
 echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
 echo '</noscript>';
 
- // header("Location: return?NewTerCreated=$name"); 
 }
 
- else  {
 
-     echo "Es ist ein Fehler unterlaufen!";
-
-} 
-
-/*
-
-//DELETE-----------------------------------------------------
-
-if (isset($_GET['deleteID'])) {
+if (isset($_POST['PicSubmit'])) {
+echo '<div class="container fluid">
+<div class="row">';
+    $name = $_POST['theOldName'];
+    $errors = array();
+    $uploadedFiles = array();
+    $extension = array("png");
+    $bytes = 1024;
+    $KB = 1024;
+    $totalBytes = $bytes * $KB;
+    $UploadFolder = "./assets/img/gebiete/";
+    $DeleteInFolder = dirname(__FILE__)."/../../assets/img/gebiete/";
+    $old_file1 = $DeleteInFolder.$name.'_1.png';
+    $old_file2 = $DeleteInFolder.$name.'_2.png';
+   if(file_exists($old_file1)){ unlink($old_file1);}
+   if(file_exists($old_file2)){ unlink($old_file2);}
+    $counter = 0;
     
-    try { 
-    //neuen verkuendiger löschen
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $dbh->prepare("DELETE FROM Verkuendiger WHERE VerkuendigerID = :vId");
-    $stmt->bindParam(':vId', $vId, PDO::PARAM_INT);
-    
-    // ausführen
-    $vId = $_GET['deleteID'];
-    $stmt->execute();
-   header("Location: editor-pub?delPub=$vId");
-  
-   
+    foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
+        $temp = $_FILES["files"]["tmp_name"][$key];
+        $name2 = $_FILES["files"]["name"][$key];
+       
+        
+        if(empty($temp))
+        {
+            break;
+        }
+        
+        
+        $counter++;
+        $UploadOk = true;
+        $new_path = $UploadFolder.$name.'_'.$counter.'.'.$extension[0];
+        if($_FILES["files"]["size"][$key] > $totalBytes)
+        {
+            $UploadOk = false;
+            array_push($errors, $name2." darf nicht größer als 1MB sein.");
+        }
+        
+        $ext = pathinfo($name2, PATHINFO_EXTENSION);
+        if(in_array($ext, $extension) == false){
+            $UploadOk = false;
+            array_push($errors, $name2." Falscher Dateityp.");
+        }
+        
+        if(file_exists($new_path) == true){
+            $UploadOk = false;
+            array_push($errors, $new_path." exestiert bereits.");
+        }
+        
+        if($UploadOk == true){
+            move_uploaded_file($temp,$new_path);
+            array_push($uploadedFiles, $name2);
+        }
     }
-    catch (PDOException $e) { 
-        header("Location: editor-pub?delPubERR=yes");
-    } 
+    
+    if($counter>0){
+        if(count($errors)>0)
+        {
+            echo "<b>Errors:</b>";
+            echo "<br/><ul>";
+            foreach($errors as $error)
+            {
+                echo "<li>".$error."</li>";
+            }
+            echo "</ul><br/>";
+        }
+        
+        if(count($uploadedFiles)>0){
+            echo "<b>Hochgeladen:</b>";
+            echo "<br/><ul>";
+            foreach($uploadedFiles as $fileName)
+            {
+                echo "<li>".$fileName."</li>";
+            }
+            echo "</ul><br/>";
+            
+            echo count($uploadedFiles)." wurden erfolgreich hochgeladen.";
+        }								
+    }
 
+   
+    else{
+        echo "Bitte wählen Sie Dateien aus.";
+    }
  
-  
-    }
-    else  {
+echo '</div>
+</div>';
+}
 
-        echo "Es ist ein Fehler unterlaufen!";
-   
-   }
-
-   //UPDATE------------------------------------------------------------
-
-   if (isset($_GET['updId'])&& isset($_GET['newName'])&&!empty($_GET['updId']) &&!empty($_GET['newName'])) {
-   
-  try { 
-    //namen ändern
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $dbh->prepare("UPDATE Verkuendiger SET Name = :neuerName Where VerkuendigerID = :vId");
-    $stmt->bindParam(':neuerName', $neuerName, PDO::PARAM_STR);
-    $stmt->bindParam(':vId', $vId, PDO::PARAM_INT);
-    
-    // ausführen
-    $neuerName = $_GET['newName'];
-    $vId = $_GET['updId'];
-    $stmt->execute();
-   header("Location: editor-pub?updatedPub=$neuerName");
-  
-   
-
-   //error handling
-  //  echo "\nPDO::errorInfo():\n"; 
-   // print_r($dbh->errorInfo()); 
-    //print_r($stmt->errorInfo()); 
-    //print $dbh->errorCode();
-//print $stmt->errorCode(); 
-    }
-    catch (PDOException $e) { 
-        header("Location: editor-pub?updateERR=yes");
-   } 
-
- 
-  
-    }
-    else  {
-
-        echo "Es ist ein Fehler unterlaufen!";
-   
-   }
-
-
-
-
-
-
-*/
 
 ?>

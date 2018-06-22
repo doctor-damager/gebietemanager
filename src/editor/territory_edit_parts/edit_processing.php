@@ -70,5 +70,73 @@ echo $message;
     
 }
 
+//DELETE Territory---------------------------------------
+
+if (isset($_POST["deleteTerId"])) {
+    
+    try { 
+   
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $dbh->prepare("DELETE FROM `Gebiet` WHERE GebieteID = :gId");
+    $gId = $_POST["deleteTerId"];
+    $stmt->bindParam(':gId', $gId, PDO::PARAM_INT);
+    $stmt->execute();
+  echo "Gebiet erfolgreich gelöscht";
+  
+   
+    }
+    catch (PDOException $e) { 
+        echo "Es ist ein Fehler unterlaufen!";
+    } 
+
+ 
+  
+    }
+
+    //UPDATE Territory---------------------------------------
+
+if (isset($_POST["iframe"])) {
+    
+    try { 
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $dbh->prepare("UPDATE `Gebiet` SET GebName = :gn, iframe = :ifr, Anmerkung = :an WHERE GebieteID = :gebid");
+    $gebid = $_POST["gebid"];
+    $oldName = $_POST["oldName"];
+    $gn = $_POST["neuername"];
+    $ifr = $_POST["iframe"];
+    $an = $_POST["anmerkung"];
+    $stmt->bindParam(':gebid', $gebid);
+    $stmt->bindParam(':gn', $gn);
+    $stmt->bindParam(':ifr', $ifr);
+    $stmt->bindParam(':an', $an);
+    $stmt->execute();
+    echo $oldName.$gn.$gebid.$an;
+if($oldName != $gn){
+    if (file_exists("./../../../assets/img/gebiete/".$oldName."_1.png"))
+    { rename ("./../../../assets/img/gebiete/".$oldName."_1.png", "./../../../assets/img/gebiete/".$gn."_1.png");}
+    
+    if (file_exists("./../../../assets/img/gebiete/".$oldName."_2.png"))
+    { rename ("./../../../assets/img/gebiete/".$oldName."_2.png", "./../../../assets/img/gebiete/".$gn."_2.png");}
+
+
+}
+  echo "Gebiet erfolgreich Upgedatet!";
+  
+   
+    }
+    catch (PDOException $e) { 
+        echo $gn;
+        echo "Es ist ein Fehler unterlaufen!";
+        print_r($dbh->errorInfo()); 
+print_r($stmt->errorInfo()); 
+print $dbh->errorCode();
+print $stmt->errorCode(); 
+echo "Error!: " . $e->getMessage() . "<br/>";
+    } 
+
+ 
+  
+    }
+
 
 ?>

@@ -168,6 +168,64 @@ function deleteP(bearbId,freeCheck,gebieteId,lastPub) {
     };
 }
 
+function deleteTer(deleteTerId){
+   
+    if( confirm('Bist du dir sicher?')) { 
+        
+      
+
+        var deleteMe = true;
+   
+           $.ajax({ 
+               url:'./src/editor/territory_edit_parts/edit_processing.php',
+               method:'POST',
+               datType:'html',
+               data:{
+                   deleteTerId:deleteTerId
+               },
+              success:function(data){
+              showInfo(data);
+              }
+           });
+   
+       
+       
+       
+       };
+
+
+}
+
+function updateTer() {
+    if(confirm("Möchtest du die Änderungen Übernehmen?")){
+    var iframe = $('#changeTerIframe').val();
+    var anmerkung = $('#changeTerAn').val();
+    var neuername = $('#changeTerName').val();
+    var oldName = $('#oldName').val();
+    var gebid = $('#gebid').val();
+    
+          $.ajax({ 
+            url:'./src/editor/territory_edit_parts/edit_processing.php',
+                   method:'POST',
+                   datType:'html',
+                   data:{
+                    gebid:gebid, 
+                    oldName:oldName,
+                    iframe:iframe,
+                    anmerkung:anmerkung,
+                    neuername:neuername
+                   },
+                  success:function(data){
+                  showInfo(data);
+                  }
+               });
+    
+    
+    }
+    
+    }
+
+
 function yellowOnes(){
     var list = document.getElementsByClassName('nine');
     var elements = document.getElementsByClassName("cards");
