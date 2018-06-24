@@ -2,7 +2,8 @@
 
 $img1= "./assets/img/gebiete/".$nameOfTer."_1.png";
 $img2= "./assets/img/gebiete/".$nameOfTer."_2.png";
-if(file_exists($img1) && file_exists($img1) ) { if (filesize($img1) > filesize($img2))  {$mapImg=$img1; $qr=$img2;} else{ $mapImg=$img2; $qr=$img1;}}
+$mapImg=$img1; 
+$qr=$img2;
 if(!file_exists($img1)) { $mapImg = "http://via.placeholder.com/250x150";}
 if(!file_exists($img2)) { $qr = "http://via.placeholder.com/250x150";}
 
@@ -62,7 +63,7 @@ if(!file_exists($img2)) { $qr = "http://via.placeholder.com/250x150";}
   </div>
   </form>
   <br/>
-  <button type="submit" class="btn btn-dark btn-block" form="updatePics" id="PicSubmit" name="PicSubmit" >Gebiet erstellen</button>
+  <button type="submit" class="btn btn-dark btn-block" form="updatePics" id="PicSubmit" name="PicSubmit" >Bilder Update</button>
   <br/>
   <br/>
 

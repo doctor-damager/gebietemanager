@@ -71,11 +71,34 @@ if(isset($_POST["btnSubmit"]))
     $totalBytes = $bytes * $KB;
     $UploadFolder = "./assets/img/gebiete/";
     
+
+    $input= $_FILES["files"];
+
+
+  
+
+    if(isset($input["size"][1])){
+     $first = $input["size"][0];
+     $second = $input["size"][1];
+ if($first<$second){
+     
+      $type=array_reverse($input['type']);
+      $tmp_name=array_reverse($input['tmp_name']);
+      $error=array_reverse($input['error']);
+      $size=array_reverse($input['size']);
+      $input = array_reverse($input['name']);
+    $input = array_merge_recursive(array('name'=>$input),array('type'=>$type),array('tmp_name'=>$tmp_name),array('error'=>$error),array('size'=>$size));
+ }
+ echo "sortiert";
+    }
+
+
+
     $counter = 0;
     
-    foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
-        $temp = $_FILES["files"]["tmp_name"][$key];
-        $name2 = $_FILES["files"]["name"][$key];
+    foreach($input["tmp_name"] as $key=>$tmp_name){
+        $temp = $input["tmp_name"][$key];
+        $name2 = $input["name"][$key];
        
         
         if(empty($temp))
@@ -86,7 +109,7 @@ if(isset($_POST["btnSubmit"]))
         $counter++;
         $UploadOk = true;
         $new_path = $UploadFolder.$name.'_'.$counter.'.'.$extension[0];
-        if($_FILES["files"]["size"][$key] > $totalBytes)
+        if($input["size"][$key] > $totalBytes)
         {
             $UploadOk = false;
             array_push($errors, $name2." file size is larger than the 1 MB.");
@@ -164,14 +187,38 @@ echo '<div class="container fluid">
     $UploadFolder = "./assets/img/gebiete/";
     $DeleteInFolder = dirname(__FILE__)."/../../assets/img/gebiete/";
     $old_file1 = $DeleteInFolder.$name.'_1.png';
-    $old_file2 = $DeleteInFolder.$name.'_2.png';
+    if(file_exists($DeleteInFolder.$name.'_1.png')){     $old_file2 = $DeleteInFolder.$name.'_2.png';} else {$old_file2 = "notfound.png";}
+
    if(file_exists($old_file1)){ unlink($old_file1);}
-   if(file_exists($old_file2)){ unlink($old_file2);}
-    $counter = 0;
+ 
+   $input= $_FILES["files"];
+
+
+  
+
+   if(isset($input["size"][1])){
+    if(file_exists($old_file2)){ unlink($old_file2);}
+    $first = $input["size"][0];
+    $second = $input["size"][1];
+if($first<$second){
     
-    foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
-        $temp = $_FILES["files"]["tmp_name"][$key];
-        $name2 = $_FILES["files"]["name"][$key];
+     $type=array_reverse($input['type']);
+     $tmp_name=array_reverse($input['tmp_name']);
+     $error=array_reverse($input['error']);
+     $size=array_reverse($input['size']);
+     $input = array_reverse($input['name']);
+   $input = array_merge_recursive(array('name'=>$input),array('type'=>$type),array('tmp_name'=>$tmp_name),array('error'=>$error),array('size'=>$size));
+}
+echo "sortiert";
+   }
+
+
+
+$counter = 0;
+    
+    foreach($input["tmp_name"] as $key=>$tmp_name){
+        $temp = $input["tmp_name"][$key];
+        $name2 = $input["name"][$key];
        
         
         if(empty($temp))
@@ -183,7 +230,7 @@ echo '<div class="container fluid">
         $counter++;
         $UploadOk = true;
         $new_path = $UploadFolder.$name.'_'.$counter.'.'.$extension[0];
-        if($_FILES["files"]["size"][$key] > $totalBytes)
+        if($input["size"][$key] > $totalBytes)
         {
             $UploadOk = false;
             array_push($errors, $name2." darf nicht größer als 1MB sein.");
@@ -228,6 +275,14 @@ echo '<div class="container fluid">
             echo "</ul><br/>";
             
             echo count($uploadedFiles)." wurden erfolgreich hochgeladen.";
+
+$url = "return";
+echo '<script type="text/javascript">';
+echo 'window.location.href="'.$url.'";';
+echo '</script>';
+echo '<noscript>';
+echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+echo '</noscript>';
         }								
     }
 
