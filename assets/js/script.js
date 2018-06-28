@@ -25,7 +25,7 @@ function filterCards(id) {
         var value = $(this).val().toLowerCase();
         var scan = text.search(value);
 
-      var element = document.getElementById(id);
+      var element = document.getElementById("card_"+id);
 
       if (scan =="-1") {  element.classList.add("d-none");   }
       else {element.classList.remove("d-none"); console.log(text);   }
@@ -51,22 +51,25 @@ function editTD(bearbId,type) {
         $('#selN').change(function(){
         var the_selected = $( '#selN' ).val();
         var the_selectedName = $( '#'+the_selected ).text();
-      confirm("Auf "+the_selectedName+" ändern?") 
-      
-      $.ajax({ 
-        url:'./src/editor/territory_edit_parts/edit_processing.php',
-        method:'POST',
-        datType:'html',
-        data:{
-            bearbId:bearbId,
-            the_selected:the_selected,
-            type:type
-         
-        },
-       success:function(data){
-        $('#cn').html(data);
-       }
-    });
+            if ( confirm("Auf "+the_selectedName+" ändern?") ) 
+            {
+                
+                $.ajax({ 
+                    url:'./src/editor/territory_edit_parts/edit_processing.php',
+                    method:'POST',
+                    datType:'html',
+                    data:{
+                        bearbId:bearbId,
+                        the_selected:the_selected,
+                        type:type
+                    
+                    },
+                success:function(data){
+                    $('#cn').html(data);
+                }
+                });
+
+            }
     
     
     });
@@ -80,7 +83,8 @@ function editTD(bearbId,type) {
         $('#newAus').change(function(){
         var the_date = $( '#newAus' ).val();
      
-      confirm("Ausgabe auf "+the_date+" ändern?") 
+        if ( confirm("Ausgabe auf "+the_date+" ändern?") ) 
+        {
        var the_selected = the_date+"-28";
       $.ajax({ 
         url:'./src/editor/territory_edit_parts/edit_processing.php',
@@ -96,7 +100,7 @@ function editTD(bearbId,type) {
         $('#cn1').html(data);
        }
     });
-    
+}
     
     });
 
@@ -107,7 +111,8 @@ function editTD(bearbId,type) {
         $('#newRueck').change(function(){
         var the_date = $( '#newRueck' ).val();
      
-      confirm("Rueckgabe auf "+the_date+" ändern?") 
+        if ( confirm("Rueckgabe auf "+the_date+" ändern?") ) 
+        {
        var the_selected = the_date+"-28";
       $.ajax({ 
         url:'./src/editor/territory_edit_parts/edit_processing.php',
@@ -123,7 +128,7 @@ function editTD(bearbId,type) {
         $('#cn2').html(data);
        }
     });
-    
+}
     
     });
 
@@ -200,9 +205,14 @@ function updateTer() {
     if(confirm("Möchtest du die Änderungen Übernehmen?")){
     var iframe = $('#changeTerIframe').val();
     var anmerkung = $('#changeTerAn').val();
+    var strassen = $('#changeTerStrassen').val();
+    var stadtteil = $('#changeTerStadtteil').val();
+    var wohneinheiten = $('#changeTerWohneinheiten').val();
     var neuername = $('#changeTerName').val();
     var oldName = $('#oldName').val();
     var gebid = $('#gebid').val();
+    var rueckbesuche = $('#rueckbesuche').val();
+    var nichtbesuchen = $('#nichtbesuchen').val();
     
           $.ajax({ 
             url:'./src/editor/territory_edit_parts/edit_processing.php',
@@ -213,7 +223,12 @@ function updateTer() {
                     oldName:oldName,
                     iframe:iframe,
                     anmerkung:anmerkung,
-                    neuername:neuername
+                    strassen:strassen,
+                    stadtteil:stadtteil,
+                    wohneinheiten:wohneinheiten,
+                    neuername:neuername,
+                    nichtbesuchen:nichtbesuchen,
+                    rueckbesuche:rueckbesuche
                    },
                   success:function(data){
                   showInfo(data);

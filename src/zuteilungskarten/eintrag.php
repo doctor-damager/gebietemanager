@@ -6,10 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="../../assets/css/style_karten.css" >
     <title>Titel</title>
+    <style>
+   
 
+   #frame {
+       -ms-zoom: 1.5;
+       -moz-transform: scale(1.5);
+       -moz-transform-origin: 0 0;
+       -o-transform: scale(1.5);
+       -o-transform-origin: 0 0;
+       -webkit-transform: scale(1.5);
+       -webkit-transform-origin: 0 0;
+   }
+
+   
+</style>
 
 </head>
-<body style="-webkit-print-color-adjust:exact;">
+<body style="-webkit-print-color-adjust:exact;" id='frame' >
 
 <?php
 //error loging
@@ -41,7 +55,7 @@ $res_bearbeitung = mysqli_query($mysqli,
                                         LEFT JOIN Gebiet ON Bearbeitung.Gebietlink = Gebiet.GebieteID
                                         LEFT JOIN Verkuendiger ON Bearbeitung.Verkuendiger = Verkuendiger.VerkuendigerID WHERE Bearbeitung.Gebietlink = '$gebieteid' ORDER BY BearbeitungsID DESC LIMIT 13)sub ORDER BY BearbeitungsID ASC");       
                                                             
-     echo"<table border='0' style='width:140px; padding-top:2px;font-size:11.5px;text-align:center;' >";   
+     echo"<table  border='0' style='width:140px; padding-top:2px;font-size:11.5px;text-align:center;' >";   
 while($row = mysqli_fetch_assoc($res_bearbeitung)){
     $bearb_id = $row['BearbeitungsID'];  
     $geb_nr = $row['GebName'];

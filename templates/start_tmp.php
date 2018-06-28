@@ -22,7 +22,7 @@
  <script  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="  crossorigin="anonymous"></script>
  
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<?php if(isset($_SESSION['userid'])) {?><script src="./assets/js/script.js"></script> <?php } ?>
+
 
 
     <title><?php if ($current_file_name == "geb") {echo "Home";} else {echo ucfirst($current_file_name);} ?> - Gebietemanager</title>
@@ -122,3 +122,4 @@ $userid = $_SESSION['userid'];
   
   
   ?>
+<script src="./assets/js/script.js"></script>

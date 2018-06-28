@@ -99,18 +99,27 @@ if (isset($_POST["iframe"])) {
     
     try { 
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $dbh->prepare("UPDATE `Gebiet` SET GebName = :gn, iframe = :ifr, Anmerkung = :an WHERE GebieteID = :gebid");
+    $stmt = $dbh->prepare("UPDATE `Gebiet` SET GebName = :gn, iframe = :ifr, Anmerkung = :an, strassen = :stra, wohneinheiten = :we, stadteil = :stata, nichtbesuchen = :nb, rueckbesuche = :rb WHERE GebieteID = :gebid");
     $gebid = $_POST["gebid"];
     $oldName = $_POST["oldName"];
     $gn = $_POST["neuername"];
+    $stra = $_POST["strassen"];
+    $we = $_POST["wohneinheiten"];
+    $stata = $_POST["stadtteil"];
     $ifr = $_POST["iframe"];
     $an = $_POST["anmerkung"];
+    $nb = $_POST["nichtbesuchen"];
+    $rb = $_POST["rueckbesuche"];
     $stmt->bindParam(':gebid', $gebid);
     $stmt->bindParam(':gn', $gn);
     $stmt->bindParam(':ifr', $ifr);
     $stmt->bindParam(':an', $an);
+    $stmt->bindParam(':stra', $stra);
+    $stmt->bindParam(':we', $we);
+    $stmt->bindParam(':stata', $stata);
+    $stmt->bindParam(':nb', $nb);
+    $stmt->bindParam(':rb', $rb);
     $stmt->execute();
-    echo $oldName.$gn.$gebid.$an;
 if($oldName != $gn){
     if (file_exists("./../../../assets/img/gebiete/".$oldName."_1.png"))
     { rename ("./../../../assets/img/gebiete/".$oldName."_1.png", "./../../../assets/img/gebiete/".$gn."_1.png");}

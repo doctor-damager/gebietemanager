@@ -34,6 +34,11 @@ while ($rowTer = $stmt->fetch(PDO::FETCH_ASSOC)){
   $gebName = $rowTer['GebName'];  
   $iframe = $rowTer['iframe'];  
   $anmerkung = $rowTer['Anmerkung'];  
+  $strassen = $rowTer['strassen']; 
+  $wohneinheiten = $rowTer['wohneinheiten']; 
+  $stadtteil = $rowTer['stadteil']; 
+  $nichtbesuchen = $rowTer['nichtbesuchen']; 
+  $rueckbesuche = $rowTer['rueckbesuche']; 
 
 } 
 ?> 
@@ -52,6 +57,20 @@ while ($rowTer = $stmt->fetch(PDO::FETCH_ASSOC)){
       <div class="col-md-6"> <?php include('territory_edit_parts/frame_img_qr.php'); ?> </div>
         <div class="col-md-6">
         <div class="container-fluid">
+        <div class="row">
+<div class="col-sm-12">
+
+<a class="btn btn-dark " role="button" id="print_a4" name="print_a4" href="/geb/printcard?id=<?php echo $gebieteid; ?>"> <i class="fas fa-print"></i> Gebietskarte Drucken </a>
+
+</div>
+<div class="col-sm-12 mt-1">
+
+<a class="btn btn-dark " role="button" href='whatsapp://send?text=GEBIET NR.: <?php echo $gebName ?>       STADTTEIL: <?php echo $stadtteil ?>          STRAẞEN: <?php echo $strassen ?>       RÜCKBESUCHE: <?php echo $rueckbesuche ?>       NICHT BESUCHEN: <?php echo $nichtbesuchen ?>          ANMERKUNG: <?php echo $anmerkung ?>               Bitte melde das Gebiet dem Gebietsdiener wenn du es bearbeitet hast! Viel Freude im Dienst :) '><i class="fab fa-whatsapp"></i> teilen</a>
+
+</div>
+<br/>
+<br/>
+</div>
 <div class="row">
 <table class="table table-striped small">
   <thead class="thead-dark">
@@ -107,6 +126,78 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 }?>
         </tbody>
 </table>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+  <div class="card-header bg-dark text-white" >
+    STRASSEN:
+  </div>
+ 
+  <ul class="list-group">
+  <?php
+  $straße = explode("+", $strassen);
+  foreach ($straße as $item) {
+    if ($item ==""){continue;} 
+    echo "<li class='list-group-item'>".$item."</li>";
+  }?>
+  </ul>
+  
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+  <div class="card-header bg-dark text-white" >
+    RÜCKBESUCHE:
+  </div>
+ 
+  <ul class="list-group">
+  
+  <?php
+  $rueckbesuch = explode("+", $rueckbesuche);
+  foreach ($rueckbesuch as $item) {
+    if ($item ==""){continue;} 
+    echo "<li class='list-group-item'>".$item."</li>";
+  }?>
+  </ul>
+  
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+  <div class="card-header bg-dark text-white" >
+    NICHT BESUCHEN:
+  </div>
+ 
+  <ul class="list-group">
+  <?php
+  $nichtbesuch = explode("+", $nichtbesuchen);
+  foreach ($nichtbesuch as $item) {
+    if ($item ==""){continue;} 
+    echo "<li class='list-group-item'>".$item."</li>";
+  }?>
+  </ul>
+  
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+  <div class="card-header bg-dark text-white" >
+    ANMERKUNG:
+  </div>
+
+  <?php
+    echo $anmerkung;?>
+  </ul>
+  
+</div>
+</div>
 </div>
 </div> 
         

@@ -16,6 +16,7 @@ $routes = [
   'geb/territory' => 'src/editor/handle_territory.php',
   'geb/return' => 'src/home/home.php',
   'geb/home' => 'src/home/home.php',
+  'geb/printcard' => 'src/editor/print/print_a4.php',
   'geb/processing' => 'src/editor/handle_processing.php',
   'geb/logout' => 'src/logout.php'
   

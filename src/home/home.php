@@ -89,6 +89,9 @@ echo '<div class="container-fluid"> <div class="row align-items-center justify-c
         $geb_inhaber = $row2['Name'];
         $ausgabe = $row2['ausgabe'];
         $rueckgabe = $row2['rueckgabe'];
+        $stadtteil = $row2['stadteil'];
+        $wohneinheiten = $row2['wohneinheiten'];
+        $strassen = $row2['strassen'];
         if ( $rueckgabe == NULL || $rueckgabe == "1993-09-30" ) {
             try {
               $statement3 = $dbh->prepare("SELECT rueckgabe FROM `Bearbeitung` WHERE Gebietlink = '$gebieteid' AND rueckgabe IS NOT NULL AND rueckgabe != :birth  ORDER BY BearbeitungsID DESC LIMIT 1 ");

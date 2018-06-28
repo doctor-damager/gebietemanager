@@ -7,16 +7,26 @@ if (isset($_POST['newTerName'])) {
 
     try {
 //neues gebiet in die db eintragen
-$stmt = $dbh->prepare("INSERT INTO Gebiet (GebName, iframe, Anmerkung) VALUES (:gebName, :iframe, :anmerkung)");
+$stmt = $dbh->prepare("INSERT INTO Gebiet (GebName, iframe, Anmerkung, stadteil, wohneinheiten, strassen) VALUES (:gebName, :iframe, :anmerkung, :stadteil, :wohneinheiten, :strassen)");
 $stmt->bindParam(':gebName', $name);
 $stmt->bindParam(':iframe', $iframe);
 $stmt->bindParam(':anmerkung', $anmerkung);
+$stmt->bindParam(':stadteil', $stadteil);
+$stmt->bindParam(':wohneinheiten', $wohneinheiten);
+$stmt->bindParam(':strassen', $strassen);
 
 
 // ausführen
 $name = $_POST['newTerName'];
 $iframe = $_POST['theIframe'];
 $anmerkung = $_POST['TerAnmerkung'];
+$stadteil = $_POST['newStadtteil'];
+$wohneinheiten = $_POST['newWohneinheiten'];
+$strassen = $_POST['TerStrassen'];
+
+
+
+
 $stmt->execute();
     } catch (PDOException $e) {
         echo 'Verbindung fehlgeschlagen: ' . $e->getMessage();
@@ -187,7 +197,7 @@ echo '<div class="container fluid">
     $UploadFolder = "./assets/img/gebiete/";
     $DeleteInFolder = dirname(__FILE__)."/../../assets/img/gebiete/";
     $old_file1 = $DeleteInFolder.$name.'_1.png';
-    if(file_exists($DeleteInFolder.$name.'_1.png')){     $old_file2 = $DeleteInFolder.$name.'_2.png';} else {$old_file2 = "notfound.png";}
+    if(file_exists($DeleteInFolder.$name.'_2.png')){     $old_file2 = $DeleteInFolder.$name.'_2.png';} else {$old_file2 = "notfound.png";}
 
    if(file_exists($old_file1)){ unlink($old_file1);}
  
@@ -295,5 +305,103 @@ echo '</div>
 </div>';
 }
 
+
+
+if (isset($_POST['updateBigPicSubmit'])) {
+    echo '<div class="container fluid">
+    <div class="row">';
+        $name = $_POST['theOldName'];
+        $errors = array();
+        $uploadedFiles = array();
+        $extension = array("png");
+        $bytes = 1024;
+        $KB = 1024;
+        $totalBytes = $bytes * $KB;
+        $UploadFolder = "./assets/img/gebiete/";
+        $DeleteInFolder = dirname(__FILE__)."/../../assets/img/gebiete/";
+        $old_file1 = $DeleteInFolder.$name.'_big.png';
+    
+       if(file_exists($old_file1)){ unlink($old_file1);}
+     
+       $input= $_FILES["file"];
+        
+
+            $temp = $input["tmp_name"];
+            $name2 = $input["name"];
+           
+            
+            if(empty($temp))
+            {
+                exit;
+            }
+            
+            
+         
+            $UploadOk = true;
+            $new_path = $UploadFolder.$name.'_big.'.$extension[0];
+            if($input["size"] > $totalBytes)
+            {
+                $UploadOk = false;
+                array_push($errors, $name2." darf nicht größer als 1MB sein.");
+            }
+            
+            $ext = pathinfo($name2, PATHINFO_EXTENSION);
+            if(in_array($ext, $extension) == false){
+                $UploadOk = false;
+                array_push($errors, $name2." Falscher Dateityp.");
+            }
+            
+            if(file_exists($new_path) == true){
+                $UploadOk = false;
+                array_push($errors, $new_path." exestiert bereits.");
+            }
+            
+            if($UploadOk == true){
+                move_uploaded_file($temp,$new_path);
+                array_push($uploadedFiles, $name2);
+            }
+        
+        
+       
+            if(count($errors)>0)
+            {
+                echo "<b>Errors:</b>";
+                echo "<br/><ul>";
+                foreach($errors as $error)
+                {
+                    echo "<li>".$error."</li>";
+                }
+                echo "</ul><br/>";
+            }
+            
+            if(count($uploadedFiles)>0){
+                echo "<b>Hochgeladen:</b>";
+                echo "<br/><ul>";
+                foreach($uploadedFiles as $fileName)
+                {
+                    echo "<li>".$fileName."</li>";
+                }
+                echo "</ul><br/>";
+                
+                echo count($uploadedFiles)." wurden erfolgreich hochgeladen.";
+    
+    $url = "return";
+    echo '<script type="text/javascript">';
+    echo 'window.location.href="'.$url.'";';
+    echo '</script>';
+    echo '<noscript>';
+    echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+    echo '</noscript>';
+            }								
+     
+    
+       
+        else{
+            echo "Bitte wählen Sie Dateien aus.";
+        }
+     
+    echo '</div>
+    </div>';
+    }
 
 ?>

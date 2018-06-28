@@ -47,16 +47,27 @@
   </div>
   <div class="form-group" id="ausgabeDiv">
     <label for="Ausgabe">Ausgabe</label>
-    <input id="newTerAusgabe" name="newTerAusgabe" id="newTerAusgabe" type="month">
+    <input  class="form-control" id="newTerAusgabe" name="newTerAusgabe"  type="month">
   </div>
-
+  <div class="form-group">
+    <label for="wohnEinh">Wohneinheiten</label>
+    <input class="form-control" id="newWohneinheiten" name="newWohneinheiten" type="number" min="0">
+  </div>
+  <div class="form-group" >
+    <label for="stadtteil">Stadtteil</label>
+    <input class="form-control" id="newStadtteil" name="newStadtteil" type="text" maxlength="400">
+  </div>
   <div class="form-group">
     <label for="BildHochaden">Karte und QR-Code hochladen (.png max 1Mb)</label>
-    <input type="file" name="files[]" multiple="multiple" />
+    <input class="form-control" type="file" name="files[]" multiple="multiple" />
   </div>
   <div class="form-group">
     <label for="Iframe">iframe:</label>
     <textarea maxlength="800" class="form-control" id="theIframe" name="theIframe" rows="2"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="Strassen">Straßen</label>
+    <textarea maxlength="2500" class="form-control" id="TerStrassen" name="TerStrassen" rows="3"></textarea>
   </div>
   <div class="form-group">
     <label for="Anmerkung">Anmerkung</label>

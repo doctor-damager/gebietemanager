@@ -13,7 +13,7 @@
 <button onclick="printOtherPage()">Drucken</button></div>
   <div class="row">
 <div class="embed-responsive embed-responsive-16by9 " >
-<iframe id="frame" class="embed-responsive-item" allowfullscreen src="./src/zuteilungskarten/eintrag.php"></iframe>
+<iframe id="frame" class="embed-responsive-item" allowfullscreen src="./src/editor/print/print_a4.php"></iframe>
 </div></div>
 </div>
 <script type="text/javascript">
