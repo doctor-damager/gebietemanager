@@ -28,7 +28,9 @@ function filterCards(id) {
       var element = document.getElementById("card_"+id);
 
       if (scan =="-1") {  element.classList.add("d-none");   }
-      else {element.classList.remove("d-none"); console.log(text);   }
+      else {element.classList.remove("d-none"); 
+      //console.log(text);
+       }
    
   
     })
@@ -142,7 +144,7 @@ function editTD(bearbId,type) {
 
 
 
-function deleteP(bearbId,freeCheck,gebieteId,lastPub) {
+function deleteP(bearbId,freeCheck,gebieteId,lastPub,bearbLast) {
     if (freeCheck == "3"){alert("Frei kann nicht gelöscht werden ! Neu ausgeben!"); return;}
     if( confirm('Bist du dir sicher?')) { 
         
@@ -159,7 +161,8 @@ function deleteP(bearbId,freeCheck,gebieteId,lastPub) {
                 deleteMe:deleteMe,
                 freeCheck:freeCheck,
                 gebieteId:gebieteId,
-                lastPub:lastPub
+                lastPub:lastPub,
+                bearbLast:bearbLast
             },
            success:function(data){
             $('#infoModal').modal('show')
@@ -293,8 +296,8 @@ function redOnes(){
 function nineMoths(id) {
     $("#myFilter").on("keyup", function() {
       var element = document.getElementById(id);
-    var color = element.style.backgroundColor
-    console.log(color)
+    var color = element.style.backgroundColor;
+    console.log(color);
 
    //   if (scan =="-1") {  element.classList.add("d-none");   }
      // else {element.classList.remove("d-none"); console.log(text);   }

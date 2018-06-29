@@ -172,7 +172,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     <div class="row" id="scissors">
         <?php for($i=0; $i<=17; $i++){echo "&emsp;<i class='fas fa-cut'></i>&emsp;&emsp;";}?>
         <br>
-        <i class="fas fa-hand-point-left fa-3x"></i>   <h6 class="text-muted"> Zum bedrucken der Rückseite in angezeigter Richtung ins Papierfach legen.</h6>
+        <span>&emsp;&emsp;</span> <i class="fas fa-hand-point-left fa-3x"></i>  &emsp; <h6 class="text-muted"> Zum bedrucken der Rückseite in angezeigter Richtung ins Papierfach legen.</h6>
     
 </div>
 </div>
@@ -185,16 +185,26 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
 <page size='A4'>
     <div class="container-fluid"  style="height:100%">
-        <div class="row"  style="height:90%">
+  
+    <div class="row" id="scissors2" style="height:8%"> 
+        <div class="mt-5"><?php for($i=0; $i<=17; $i++){echo "&emsp;<i class='fas fa-cut'></i>&emsp;&emsp;";}?></div>
+       
+    
+</div>
+        <div class="row"  style="height:92%">
             <div class="col-md-6">
 <div class="row" style="height:50%"></div>
 <div class="row justify-content-center" style="height:50%">
 <div class="container-fluid">  
 <div class="row justify-content-center" >
-<h6><i class="far fa-edit"></i><b> ANMERKUNGEN:</b></h6></div>
+<h6 class="mt-4"><i class="far fa-edit"></i><b> ANMERKUNGEN:</b></h6></div>
+<div class="row justify-content-center" >
+<i class="fas fa-tasks"> </i> &nbsp;<small>  Bitte teile dem Gebietsdiener jede Bearbeitung des Gebietes mit.</small></div>
 <div class="row justify-content-center" >
 <i class="fas fa-lightbulb"></i><small class="text-muted"> Hier können besodere Vermerke notiert werden.</small></div>
+
 <div class="row  m-3" ><?php echo $anmerkung;?></div>
+
 </div>  
 </div>
 
@@ -203,11 +213,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             <div class="col-md-6"><img id="card_big_img" src="./assets/img/gebiete/<?php  echo $name; ?>_big.png"  alt="" class="bigImg" ></div>
         </div>
 
-            <div class="row" id="scissors">
-        <?php for($i=0; $i<=17; $i++){echo "&emsp;<i class='fas fa-cut'></i>&emsp;&emsp;";}?>
-       
-    
-</div>
+
     </div>
 
 

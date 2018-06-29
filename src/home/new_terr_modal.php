@@ -51,7 +51,7 @@
   </div>
   <div class="form-group">
     <label for="wohnEinh">Wohneinheiten</label>
-    <input class="form-control" id="newWohneinheiten" name="newWohneinheiten" type="number" min="0">
+    <input class="form-control" id="newWohneinheiten" name="newWohneinheiten" value="1" type="number" min="0">
   </div>
   <div class="form-group" >
     <label for="stadtteil">Stadtteil</label>

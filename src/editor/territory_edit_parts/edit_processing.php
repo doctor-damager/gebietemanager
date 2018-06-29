@@ -11,6 +11,14 @@ $stmt->execute();
 
 if ($_POST["lastPub"] != "3"){
 //wieder auf frei setzen 
+
+
+$last_bearb_id = $_POST["bearbLast"];  
+
+$checkDelete = $_POST["bearbId"];
+if($last_bearb_id == $checkDelete){
+
+
 $stmt = $dbh->prepare("INSERT INTO `Bearbeitung` ( Gebietlink, Verkuendiger, ausgabe, rueckgabe) VALUES (:gebietlink, :verkundiger, :ausgabe, :rueckgabe)");
 
 $stmt->bindparam(':gebietlink', $gebietId);
@@ -22,7 +30,8 @@ $verkId ="3";
 $ausgabe = null;
 $rueckgabe ="1993-09-30";
 $stmt->execute();
-
+}
+echo $last_bearb_id.'/'.$checkDelete;
 }
 }
 

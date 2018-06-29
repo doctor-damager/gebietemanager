@@ -18,11 +18,15 @@ $stmt->bindParam(':strassen', $strassen);
 
 // ausführen
 $name = $_POST['newTerName'];
-$iframe = $_POST['theIframe'];
-$anmerkung = $_POST['TerAnmerkung'];
-$stadteil = $_POST['newStadtteil'];
-$wohneinheiten = $_POST['newWohneinheiten'];
-$strassen = $_POST['TerStrassen'];
+
+
+
+
+if(isset($_POST['theIframe'])){$iframe = $_POST['theIframe'];} else{ $iframe ="0";}
+if(isset($_POST['TerAnmerkung'])){$anmerkung = $_POST['TerAnmerkung'];} else{$anmerkung ="0";}
+if(isset($_POST['newStadtteil'])){$stadteil = $_POST['newStadtteil'];} else{$stadteil ="0";}
+if(isset($_POST['newWohneinheiten'])){$wohneinheiten = $_POST['newWohneinheiten'];} else{$wohneinheiten =0;}
+if(isset($_POST['TerStrassen'])){$strassen = $_POST['TerStrassen'];} else{$strassen ="0";}
 
 
 
@@ -172,14 +176,14 @@ if(isset($_POST["btnSubmit"]))
         echo "Please, Select file(s) to upload.";
     }
 }
-
+/*
 $url = "return?NewTerCreated=".$name;
 echo '<script type="text/javascript">';
 echo 'window.location.href="'.$url.'";';
 echo '</script>';
 echo '<noscript>';
 echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
-echo '</noscript>';
+echo '</noscript>'; */
 
 }
 

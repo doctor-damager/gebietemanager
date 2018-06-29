@@ -54,6 +54,7 @@ else{
        }
 
 $stmt = $dbh->prepare("INSERT INTO `Bearbeitung` ( Gebietlink, Verkuendiger, ausgabe, rueckgabe) VALUES (:gebietlink, :verkundiger, :ausgabe, :rueckgabe)");}
+
 $stmt->bindparam(':gebietlink', $gebietId);
 $stmt->bindparam(':verkundiger', $verkId);
 $stmt->bindparam(':ausgabe', $ausgabe);

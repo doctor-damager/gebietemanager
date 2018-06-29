@@ -41,6 +41,15 @@ while ($rowTer = $stmt->fetch(PDO::FETCH_ASSOC)){
   $rueckbesuche = $rowTer['rueckbesuche']; 
 
 } 
+if(!isset($gebName)){$gebName ="nicht vorhanden";}
+if(!isset($iframe)){$iframe ="nicht vorhanden";}
+if(!isset($anmerkung)){$anmerkung ="nicht vorhanden";}
+if(!isset($strassen)){$strassen ="nicht vorhanden";}
+if(!isset($wohneinheiten)){$wohneinheiten ="nicht vorhanden";}
+if(!isset($stadtteil)){$stadtteil ="nicht vorhanden";}
+if(!isset($nichtbesuchen)){$nichtbesuchen ="nicht vorhanden";}
+if(!isset($rueckbesuche)){$rueckbesuche ="nicht vorhanden";}
+
 ?> 
 
 
