@@ -38,7 +38,7 @@ if (mysqli_connect_errno($mysqli)) {
 
 //query Gebiet
 $res_gebiet = mysqli_query($mysqli, 
-                                        "SELECT * FROM `Gebiet`");
+                                        "SELECT * FROM `Gebiet` ORDER BY GebName");
  echo"<page size='A4'><div class='background'><div class='positioniert'><table border='0' ><tr valign='top'colspan='5'>";    
  $i=0;                                  
  while($row2 = mysqli_fetch_assoc($res_gebiet)){

@@ -83,7 +83,7 @@ STADTTEIL:
   <div class="form-group">
     <label for="BildHochaden">Große Karte hinzufügen(.png max 1Mb)</label>
     <input   class="form-control" type="file" name="file" required = 'required'/>
-    <input  class="form-control" type="text" id ="theOldName" name="theOldName"  value="<?php echo htmlspecialchars($nameOfTer); ?>" hidden>
+    <input  class="form-control" type="text" id ="theOldName2" name="theOldName2"  value="<?php echo htmlspecialchars($nameOfTer); ?>" hidden>
   </div>
   </form>
   <br/>

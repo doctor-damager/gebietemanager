@@ -63,7 +63,7 @@ Erstellen nicht möglich da bereits vorhanden!
 <?php
 
 try {
-    $statement = $dbh->prepare("SELECT * FROM `Gebiet`");
+    $statement = $dbh->prepare("SELECT * FROM `Gebiet` ORDER BY GebName");
     $statement->execute();
 echo '<div class="container-fluid"> <div class="row align-items-center justify-content-center" id="filterdiv" name="filterdiv">';
    while ($row = $statement->fetch(PDO::FETCH_ASSOC)){

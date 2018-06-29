@@ -176,14 +176,14 @@ if(isset($_POST["btnSubmit"]))
         echo "Please, Select file(s) to upload.";
     }
 }
-/*
+
 $url = "return?NewTerCreated=".$name;
 echo '<script type="text/javascript">';
 echo 'window.location.href="'.$url.'";';
 echo '</script>';
 echo '<noscript>';
 echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
-echo '</noscript>'; */
+echo '</noscript>';
 
 }
 
@@ -314,7 +314,7 @@ echo '</div>
 if (isset($_POST['updateBigPicSubmit'])) {
     echo '<div class="container fluid">
     <div class="row">';
-        $name = $_POST['theOldName'];
+        $name = $_POST['theOldName2'];
         $errors = array();
         $uploadedFiles = array();
         $extension = array("png");
