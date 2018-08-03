@@ -176,7 +176,7 @@ function deleteP(bearbId,freeCheck,gebieteId,lastPub,bearbLast) {
     };
 }
 
-function deleteTer(deleteTerId){
+function deleteTer(deleteTerId,nameTer){
    
     if( confirm('Bist du dir sicher?')) { 
         
@@ -189,7 +189,8 @@ function deleteTer(deleteTerId){
                method:'POST',
                datType:'html',
                data:{
-                   deleteTerId:deleteTerId
+                   deleteTerId:deleteTerId,
+                   nameTer:nameTer
                },
               success:function(data){
               showInfo(data);

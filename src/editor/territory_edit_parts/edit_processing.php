@@ -90,7 +90,17 @@ if (isset($_POST["deleteTerId"])) {
     $gId = $_POST["deleteTerId"];
     $stmt->bindParam(':gId', $gId, PDO::PARAM_INT);
     $stmt->execute();
+            $name= $_POST["nameTer"];
+    $DeleteInFolder = dirname(__FILE__)."/../../../assets/img/gebiete/";
+    $old_file1 = $DeleteInFolder.$name.'_1.png';
+    if(file_exists($DeleteInFolder.$name.'_2.png')){     $old_file2 = $DeleteInFolder.$name.'_2.png';} else {$old_file2 = "notfound.png";}
+    if(file_exists($DeleteInFolder.$name.'_big.png')){     $old_file3 = $DeleteInFolder.$name.'_big.png';} else {$old_file3 = "notfound.png";}
+
+   if(file_exists($old_file1)){ unlink($old_file1);}
+   if(file_exists($old_file2)){ unlink($old_file2);}
+   if(file_exists($old_file3)){ unlink($old_file3);}
   echo "Gebiet erfolgreich gelöscht";
+ 
   
    
     }

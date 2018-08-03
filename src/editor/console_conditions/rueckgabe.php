@@ -32,10 +32,11 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
        msgDiv(0,$message);
        exit;
       } */
-
+      if (strtotime($ausgabe) != false) {
 
       if (strtotime($rueckgabeLast) > strtotime($ausgabe) ) {
-        $message = "Ausgabedatum muss älter sein als Letzes Rückgabedatum";
+         
+        $message = "Ausgabedatum ".$ausgabe." muss älter sein als Letzes Rückgabedatum ".$rueckgabeLast ;
         msgDiv(0,$message);
         exit;
        }
@@ -44,6 +45,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         msgDiv(0,$message);
         exit;
        }
+    }
       
 }
 }
@@ -62,6 +64,28 @@ catch (PDOException $e) {
 
 /////fehler ....insert muss update sein
 
+try {
+$stmt = $dbh->prepare("SELECT Name FROM Verkuendiger WHERE VerkuendigerID = :vId");
+$stmt->bindParam(':vId', $publLast, PDO::PARAM_INT);
+$stmt->execute();
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+    $theLastName = $row['Name'];
+   
+}
+}
+
+catch (PDOException $e) {
+    echo "Error!: " . $e->getMessage() . "<br/>";
+     //error handling
+    echo "\nPDO::errorInfo():\n"; 
+     print_r($dbh->errorInfo()); 
+     print_r($stmt->errorInfo()); 
+     print $dbh->errorCode();
+ print $stmt->errorCode(); 
+    die();
+ }
 
 try {
 if ($publLast === "3") {
@@ -73,7 +97,7 @@ $stmt->bindparam(':ausgabe', $ausgabe);
 
 else{
 
-if($rueckgabeLast == "1993-09-30" && $publLast != $verk) {msgDiv(0,"Das Gebiet ist Bereits ausgegeben! Name überprüfen! Ausgabe muss '-' sein!"); exit;}
+if($rueckgabeLast == "1993-09-30" && $theLastName != $verk) {msgDiv(0,"Das Gebiet ist Bereits ausgegeben! Name überprüfen! Ausgabe muss '-' sein!"); exit;}
 
 $stmt = $dbh->prepare("UPDATE `Bearbeitung` SET Verkuendiger = :verkundiger, rueckgabe = :rueckgabe WHERE BearbeitungsID = :bearbeitungsid");}
 $stmt->bindparam(':bearbeitungsid', $BearbIdLast);
